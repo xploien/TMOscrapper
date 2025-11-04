@@ -19,8 +19,10 @@ endif()
 
 # Archivos fuente
 file(GLOB_RECURSE SOURCES
-    "${CMAKE_SOURCE_DIR}/parse.cpp"
-    # "${CMAKE_SOURCE_DIR}/src/*.cpp"
+    # "${CMAKE_SOURCE_DIR}/parse.cpp"
+    "${CMAKE_SOURCE_DIR}/src/main.cpp"
+    "${CMAKE_SOURCE_DIR}/src/MyApi.cpp"
+    "${CMAKE_SOURCE_DIR}/src/Tools.cpp"
 )
 
 # Crear ejecutable
