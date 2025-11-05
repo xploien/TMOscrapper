@@ -21,7 +21,6 @@ int main(int argc, char *argv[]) {
 
   std::cout << "Ingresa el numero del resultado a usar: \n";
   for (size_t h = 0; h < Entradas.size(); ++h) {
-    // Usamos Entradas[h] para acceder al elemento en la posición 'h'
     std::cout << "opcion " << h << ": " << Entradas[h] << "\n";
   }
   int selecionado;

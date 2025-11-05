@@ -7,10 +7,47 @@ std::string MyApi::extractSlug(const std::string &url) {
   // Encontrar la última posición de '/'
   size_t lastSlash = url.find_last_of('/');
   if (lastSlash != std::string::npos) {
-    // Extraer desde después de la última '/'
+    // Extraer desde después de la última /
     return url.substr(lastSlash + 1);
   }
   return "sorry no se pudo encontrar ";
+}
+
+std::string MyApi::GetRawPage(std::string Titulo, std::string baseurl) {
+
+  std::string url;
+  if (baseurl != "") {
+    url = baseurl + Titulo + "&_pg=1";
+    // std::cout << "llegamos aqui \n";
+  } else {
+
+    url = baseurl;
+  }
+
+  std::string RawPage;
+  CURL *curl;
+  CURLcode res;
+  curl = curl_easy_init();
+  if (curl) {
+    // La URL que quieres
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+    // Le dice a curl que use tu callback
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &RawPage);
+
+    // Ejecutar
+    res = curl_easy_perform(curl);
+
+    if (res != CURLE_OK) {
+      std::cerr << "Error: " << curl_easy_strerror(res) << std::endl;
+    }
+  }
+
+  curl_easy_cleanup(curl);
+
+  return RawPage;
 }
 
 std::string MyApi::CleanUrlString(const std::string &url) {
@@ -39,74 +76,6 @@ std::string MyApi::CleanUrlString(const std::string &url) {
 
   curl_easy_cleanup(curl);
   return finalUrl;
-}
-//
-// std::vector<std::string>
-// MyApi::CleanUrl(const std::vector<std::string> urlvector) {
-//   std::vector<std::string> Resultado;
-//   const std::string &referer = "https://zonatmo.com/";
-//   CURL *curl = curl_easy_init();
-//
-//   for (std::string i : urlvector) {
-//     curl_easy_setopt(curl, CURLOPT_URL, i.c_str());
-//     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-//     curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 10L);
-//     curl_easy_setopt(curl, CURLOPT_REFERER, referer.c_str());
-//     curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0");
-//     curl_easy_setopt(curl, CURLOPT_NOBODY,
-//                      1L); // Solo headers, no descargar body
-//
-//     CURLcode res = curl_easy_perform(curl);
-//     std::string finalUrl;
-//
-//     if (res == CURLE_OK) {
-//       char *finalUrlPtr = nullptr;
-//       curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &finalUrlPtr);
-//       if (finalUrlPtr) {
-//         Resultado.push_back(std::string(finalUrlPtr));
-//       }
-//     }
-//   }
-//   curl_easy_cleanup(curl);
-//   return Resultado;
-// }
-
-std::string MyApi::GetRawPage(std::string Titulo, std::string baseurl) {
-
-  std::string url;
-  if (baseurl != "") {
-    url = baseurl + Titulo + "&_pg=1";
-    // std::cout << "llegamos aqui! \n";
-  } else {
-
-    url = baseurl;
-  }
-
-  std::string RawPage;
-  CURL *curl;
-  CURLcode res;
-  curl = curl_easy_init();
-  if (curl) {
-    // La URL que quieres
-    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-
-    // Le dices a curl que use tu callback
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-
-    // Le pasas el string donde guardar
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &RawPage);
-
-    // Ejecutar
-    res = curl_easy_perform(curl);
-
-    if (res != CURLE_OK) {
-      std::cerr << "Error: " << curl_easy_strerror(res) << std::endl;
-    }
-  }
-
-  curl_easy_cleanup(curl);
-
-  return RawPage;
 }
 
 std::string MyApi::FindNextString(std::stringstream &ss,
@@ -185,7 +154,6 @@ std::vector<Traducion> MyApi::Findnext(std::stringstream &ss,
 
         std::string url = Coincidencia.str();
 
-        // Eliminar los últimos 2 caracteres
         if (url.length() >= 6) {
           url.pop_back();
           url.pop_back();
@@ -202,6 +170,7 @@ std::vector<Traducion> MyApi::Findnext(std::stringstream &ss,
             FindNextString(ss, posTemp, "zonatmo.com/view_uploads/",
                            NewTextoIdentificador, patron);
         newtraducion.Url = CleanUrlString(Uncleanurl);
+        newtraducion.UrlImagenes = GetImageUrls(newtraducion.Url);
 
         Resultado.push_back(newtraducion);
 
@@ -272,7 +241,6 @@ MyApi::filterPage(const std::string rawPage,
           url.pop_back();
         }
 
-        // Agregar al vector (¡push_back, no acceso por índice!)
         Resultado.push_back(url);
       }
     }

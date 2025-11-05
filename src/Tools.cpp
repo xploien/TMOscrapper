@@ -2,14 +2,18 @@
 #include <iomanip>
 #include <iostream>
 
-void Tools::imprimirTraduccion(const Traducion &trad, int indice) {
+void Tools::imprimirTraduccion(Traducion &trad, int indice) {
   std::cout << "    Traducción " << indice + 1 << ":\n";
   std::cout << "      URL: " << trad.Url << "\n";
   std::cout << "      Traductor: " << trad.NombreTraductor << "\n";
+  std::cout << "      urls de imagenes: " << "\n";
+  for (const std::string &i : trad.UrlImagenes) {
+    std::cout << i << "\n";
+  }
   std::cout << "      --------------------\n";
 }
 
-void Tools::imprimirCapitulo(const Capitulo &cap, int indice, int total) {
+void Tools::imprimirCapitulo(Capitulo &cap, int indice, int total) {
   std::cout << "═══════════════════════════════════════════════════\n";
   std::cout << "CAPÍTULO " << total - indice << ":\n";
   std::cout << "═══════════════════════════════════════════════════\n";
@@ -30,7 +34,7 @@ void Tools::imprimirCapitulo(const Capitulo &cap, int indice, int total) {
   std::cout << "\n";
 }
 
-void Tools::imprimirTodosLosCapitulos(const std::vector<Capitulo> &capitulos) {
+void Tools::imprimirTodosLosCapitulos(std::vector<Capitulo> &capitulos) {
   if (capitulos.empty()) {
     std::cout << "El vector de capítulos está vacío.\n";
     return;
@@ -39,7 +43,7 @@ void Tools::imprimirTodosLosCapitulos(const std::vector<Capitulo> &capitulos) {
   std::cout << "\n";
   std::cout << "===================================================\n";
   std::cout << "          LISTA COMPLETA DE CAPÍTULOS\n";
-  std::cout << "          Total: " << capitulos.size() << " capítulos\n";
+  std::cout << "          Total: " << capitulos.size() - 1 << " capítulos\n";
   std::cout << "===================================================\n\n";
 
   for (size_t i = 0; i < capitulos.size(); ++i) {

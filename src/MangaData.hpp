@@ -6,23 +6,24 @@
 
 class MangaData {};
 
-class Traducion : public MangaData { // También añadí 'public' aquí
+class Traducion : public MangaData {
 public:
   std::string Url;
   std::string NombreTraductor;
-
+  std::vector<std::string> UrlImagenes;
   Traducion() : Url(""), NombreTraductor("") {}
 
-  Traducion(const std::string &url, const std::string &nombreTraductor)
-      : Url(url), NombreTraductor(nombreTraductor) {}
+  Traducion(const std::string &url, const std::string &nombreTraductor,
+            const std::vector<std::string> &urlImagenes)
+      : Url(url), NombreTraductor(nombreTraductor), UrlImagenes(urlImagenes) {}
 };
 
-class Capitulo : public MangaData { // Y 'public' aquí también
+class Capitulo : public MangaData {
 public:
   float NumCapitulo;
   std::string NameCapitulo;
   std::vector<Traducion> traducciones;
-  int NumTraduciones; // Esto no puede ser = traducciones.size() aquí
+  int NumTraduciones;
 
   Capitulo() : NumCapitulo(0), NameCapitulo(""), NumTraduciones(0) {}
 
