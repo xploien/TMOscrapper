@@ -1,5 +1,6 @@
 #include "MyApi.hpp"
 #include <curl/easy.h>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -14,28 +15,53 @@ std::string MyApi::extractSlug(const std::string &url) {
 }
 
 std::string MyApi::GetRawPage(std::string Titulo, std::string baseurl) {
-
   std::string url;
-  if (baseurl != "") {
+  if (Titulo != "" && baseurl != "") {
     url = baseurl + Titulo + "&_pg=1";
-    // std::cout << "llegamos aqui \n";
-  } else {
-
-    url = baseurl;
+  } else if (baseurl != "") {
+    url = baseurl; // Usar baseurl sin modificar
   }
 
   std::string RawPage;
   CURL *curl;
   CURLcode res;
+
   curl = curl_easy_init();
   if (curl) {
-    // La URL que quieres
+    // URL
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 
-    // Le dice a curl que use tu callback
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+    // Headers
+    struct curl_slist *headers = NULL;
+    headers = curl_slist_append(headers,
+                                "User-Agent: Mozilla/5.0 (Windows NT 10.0; "
+                                "Win64; x64) AppleWebKit/537.36 (KHTML, like "
+                                "Gecko) Chrome/120.0.0.0 Safari/537.36");
+    headers = curl_slist_append(
+        headers,
+        "Accept: "
+        "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+    headers = curl_slist_append(headers, "Accept-Language: es-ES,es;q=0.9");
+    headers = curl_slist_append(headers, "Referer: https://zonatmo.com/");
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
+    // Seguir redirects
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 5L);
+
+    // Soporte para cookies (en memoria)
+    curl_easy_setopt(curl, CURLOPT_COOKIEFILE, "");
+
+    // SSL (si hay problemas de certificados)
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L);
+
+    // Callbacks
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &RawPage);
+
+    // Timeout razonable
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 30L);
 
     // Ejecutar
     res = curl_easy_perform(curl);
@@ -43,11 +69,63 @@ std::string MyApi::GetRawPage(std::string Titulo, std::string baseurl) {
     if (res != CURLE_OK) {
       std::cerr << "Error: " << curl_easy_strerror(res) << std::endl;
     }
+
+    // Limpiar
+    curl_slist_free_all(headers);
   }
 
   curl_easy_cleanup(curl);
-
   return RawPage;
+}
+
+std::vector<std::string> MyApi::GetImageUrls(const std::string url) {
+  std::string Linea;
+  std::string TextoIdentificador = "img1tmo.com/uploads/";
+  std::string rawPage = GetRawPage("", url);
+  std::vector<std::string> Resultado;
+  std::stringstream ss(rawPage);
+  std::regex patron(R"((https):\/\/[^\s\/$.?#].[^\s]*)");
+  std::regex patronJSON(R"(\(['"]\[([^\]]+)\]['"]\))");
+  std::smatch Coincidencia;
+  std::smatch Coincidencia2;
+  std::string baseimageurl;
+  std::string imgs;
+  while (std::getline(ss, Linea)) {
+    if (Linea.find(TextoIdentificador) != std::string::npos &&
+        Linea.find("var") != std::string::npos) {
+      if (std::regex_search(Linea, Coincidencia, patron)) {
+
+        std::string tempurl = Coincidencia.str();
+
+        // Eliminar los últimos 2 caracteres
+        if (tempurl.length() >= 2) {
+          tempurl.pop_back();
+          tempurl.pop_back();
+        }
+        baseimageurl = tempurl;
+      }
+    }
+    if (Linea.find("JSON.parse") != std::string::npos &&
+        Linea.find(".webp") != std::string::npos) {
+
+      if (std::regex_search(Linea, Coincidencia2, patronJSON)) {
+
+        imgs = Coincidencia2[1].str();
+        break;
+        // std::cout << "Debugregex!: " << imgs << "\n";
+      }
+    }
+  }
+  // // separar en un vector:
+  std::regex re("\"([^\"]+)\""); // todo esté entre comillas
+
+  for (std::sregex_iterator i =
+           std::sregex_iterator(imgs.begin(), imgs.end(), re);
+       i != std::sregex_iterator(); ++i) {
+    std::string tempmath = (*i)[1];
+    Resultado.push_back(baseimageurl + tempmath);
+  }
+  return Resultado;
 }
 
 std::string MyApi::CleanUrlString(const std::string &url) {
@@ -169,6 +247,7 @@ std::vector<Traducion> MyApi::Findnext(std::stringstream &ss,
         std::string Uncleanurl =
             FindNextString(ss, posTemp, "zonatmo.com/view_uploads/",
                            NewTextoIdentificador, patron);
+        newtraducion.UnfilterdUrl = Uncleanurl;
         newtraducion.Url = CleanUrlString(Uncleanurl);
         newtraducion.UrlImagenes = GetImageUrls(newtraducion.Url);
 

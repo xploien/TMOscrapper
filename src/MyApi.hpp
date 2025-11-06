@@ -1,8 +1,5 @@
 #include "MangaData.hpp"
-#include <iostream>
-#include <ostream>
 #include <regex>
-#include <string.h>
 #include <string>
 #include <vector>
 
@@ -35,7 +32,7 @@ public:
   std::vector<std::string> CleanUrl(const std::vector<std::string> urlvector);
   std::string CleanUrlString(const std::string &url);
 
-  std::vector<std::string> GetImageUrls(const std::string url);
+  std::vector<std::string> GetImageUrls(std::string url);
 };
 // obtiene la ultima frase de un url
 

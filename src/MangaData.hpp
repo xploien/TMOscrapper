@@ -4,21 +4,22 @@
 #include <string>
 #include <vector>
 
-class MangaData {};
-
-class Traducion : public MangaData {
+class Traducion {
 public:
   std::string Url;
   std::string NombreTraductor;
   std::vector<std::string> UrlImagenes;
+  std::string UnfilterdUrl;
   Traducion() : Url(""), NombreTraductor("") {}
 
   Traducion(const std::string &url, const std::string &nombreTraductor,
-            const std::vector<std::string> &urlImagenes)
-      : Url(url), NombreTraductor(nombreTraductor), UrlImagenes(urlImagenes) {}
+            const std::vector<std::string> &urlImagenes,
+            const std::string unfilterdUrl)
+      : Url(url), NombreTraductor(nombreTraductor), UrlImagenes(urlImagenes),
+        UnfilterdUrl(unfilterdUrl) {}
 };
 
-class Capitulo : public MangaData {
+class Capitulo {
 public:
   float NumCapitulo;
   std::string NameCapitulo;
@@ -31,6 +32,19 @@ public:
            const std::vector<Traducion> &traducciones)
       : NumCapitulo(numcapitulo), NameCapitulo(namecapitulo),
         traducciones(traducciones), NumTraduciones(traducciones.size()) {}
+};
+
+class Manga {
+public:
+  std::string nombre;
+  std::vector<Capitulo> capitulos;
+  int numerocapitulos = capitulos.size();
+};
+
+class MangaData {
+public:
+  std::string FindMangaURl(std::string titulo);
+  Manga GetMangaFromUrl(std::string Url);
 };
 
 #endif // MANGADATA_H

@@ -9,5 +9,5 @@ public:
   // Función para imprimir un capítulo individual
   void imprimirCapitulo(Capitulo &cap, int indice, int total);
   // Función principal para imprimir todo el vector de capítulos
-  void imprimirTodosLosCapitulos(std::vector<Capitulo> &capitulos);
+  void imprimirTodosLosCapitulos(Manga manga);
 };
