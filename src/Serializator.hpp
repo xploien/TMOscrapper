@@ -1,5 +1,5 @@
 #pragma once
-
+#define NO
 #include "MangaData.hpp"
 #include "include/cereal/archives/json.hpp"
 #include <cereal/types/string.hpp>
