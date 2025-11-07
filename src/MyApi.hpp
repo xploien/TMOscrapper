@@ -33,6 +33,8 @@ public:
   std::string CleanUrlString(const std::string &url);
 
   std::vector<std::string> GetImageUrls(std::string url);
+
+  bool DownloadImage(const std::string &url, const std::string &filename);
 };
 // obtiene la ultima frase de un url
 

@@ -4,6 +4,76 @@
 #include <string>
 #include <vector>
 
+bool MyApi::DownloadImage(const std::string &url, const std::string &filename) {
+  CURL *curl;
+  CURLcode res;
+  FILE *fp;
+
+  curl = curl_easy_init();
+  if (!curl) {
+    std::cerr << "Error inicializando CURL" << std::endl;
+    return false;
+  }
+
+  // Abrir archivo para escritura binaria
+  fp = fopen(filename.c_str(), "wb");
+  if (!fp) {
+    std::cerr << "Error abriendo archivo: " << filename << std::endl;
+    curl_easy_cleanup(curl);
+    return false;
+  }
+
+  // Configurar CURL
+  curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+  //  Referer
+  struct curl_slist *headers = NULL;
+  headers = curl_slist_append(headers, "User-Agent: Mozilla/5.0 (Windows NT "
+                                       "10.0; Win64; x64) AppleWebKit/537.36");
+  headers = curl_slist_append(headers, "Referer: https://zonatmo.com/");
+  curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+  // Escribir directamente al archivo
+  curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+
+  // Seguir redirects
+  curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+
+  // SSL
+  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1L);
+  curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L);
+
+  // Timeout
+  curl_easy_setopt(curl, CURLOPT_TIMEOUT, 60L);
+
+  // Ejecutar
+  res = curl_easy_perform(curl);
+
+  // Verificar respuesta
+  long response_code;
+  curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
+
+  // Limpiar
+  fclose(fp);
+  curl_slist_free_all(headers);
+  curl_easy_cleanup(curl);
+
+  if (res != CURLE_OK) {
+    std::cerr << "✗ Error descargando: " << curl_easy_strerror(res)
+              << std::endl;
+    return false;
+  }
+
+  if (response_code != 200) {
+    std::cerr << "✗ Error HTTP " << response_code << " en: " << url
+              << std::endl;
+    return false;
+  }
+
+  std::cout << "✓ Imagen descargada: " << filename << std::endl;
+  return true;
+}
+
 std::string MyApi::extractSlug(const std::string &url) {
   // Encontrar la última posición de '/'
   size_t lastSlash = url.find_last_of('/');
@@ -213,7 +283,8 @@ std::vector<Traducion> MyApi::Findnext(std::stringstream &ss,
 
   std::string lineaExtra;
   int contadorLineas = 0;
-  std::streampos posicionInicial = ss.tellg();
+  // std::streampos posicionInicial = ss.tellg();
+  std::streampos posicionInicial;
   // Leer las próximas N líneas buscando traducciones
   while (std::getline(ss, lineaExtra) && contadorLineas < 50) {
     // Si encuentras otro capítulo, parar
