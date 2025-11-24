@@ -6,24 +6,55 @@
 #include <string>
 
 std::string Tosearch;
+int uioption;
+bool shouldclose = false;
+
+MangaData logic;
+Tools tooling;
+MyApi api;
 
 int main(int argc, char *argv[]) {
-  MangaData logic;
-  Tools tooling;
-  MyApi api;
 
-  std::cout << "ingresa el titulo a buscar: \n";
-  std::cin >> Tosearch;
+  while (!shouldclose) {
 
-  std::string mangaurl = logic.FindMangaURl(Tosearch);
+    std::cout << "INGRESE UNA OPCION: \n \n";
+    std::cout << "1.- Buscar y guardar manga \n";
+    std::cout << "2.- Descargar Manga\n";
+    std::cout << "0.- Salir \n";
+    std::cin >> uioption;
 
-  Manga Mimanga = logic.GetMangaFromUrl(mangaurl);
+    switch (uioption) {
+    case 1: {
+      std::cout << "ingresa el titulo a buscar: \n";
+      std::cin >> Tosearch;
 
-  SavetoDB(Mimanga, "MangaElegido.json");
+      std::string mangaurl = logic.FindMangaURl(Tosearch);
 
-  tooling.imprimirTodosLosCapitulos(Mimanga);
+      Manga Mimanga = logic.GetMangaFromUrl(mangaurl);
 
-  api.DownloadImage(Mimanga.capitulos[0].traducciones[0].UrlImagenes[1],
-                    "prueba1");
+      SavetoDB(Mimanga);
+
+      tooling.imprimirTodosLosCapitulos(Mimanga);
+
+      api.DownloadImage(Mimanga.capitulos[0].traducciones[0].UrlImagenes[1],
+                        "prueba1");
+    } break;
+    case 2: {
+      std::cout << "Uninmplemented \n";
+      break;
+    }
+    case 0: {
+      shouldclose = true;
+      break;
+    }
+    default: {
+
+      std::cout << " Selecione una opcion correcta \n";
+      break;
+    }
+    }
+  }
+
+  std::cout << " Se llego al final del while Adios \n";
   return 0;
 }

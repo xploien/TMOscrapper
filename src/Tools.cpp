@@ -44,6 +44,7 @@ void Tools::imprimirTodosLosCapitulos(Manga manga) {
 
   std::cout << "\n";
   std::cout << "===================================================\n";
+  std::cout << "          MANGA: " << manga.nombre << "\n";
   std::cout << "          LISTA COMPLETA DE CAPÍTULOS\n";
   std::cout << "          Total: " << manga.capitulos.size() << " capítulos\n";
   std::cout << "===================================================\n\n";

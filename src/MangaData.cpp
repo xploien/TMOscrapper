@@ -26,7 +26,9 @@ Manga MangaData::GetMangaFromUrl(std::string Url) {
   Manga MangaObtenido;
   std::string manga = Api.GetRawPage("", Url);
   std::cout << "la pagina a usar sera: " << Url << "\n";
-
+  MangaObtenido.nombre = Api.extractSlug(Url);
+  // std::cout << "deadbuggin nombre:" << MangaObtenido.nombre << "\n";
   MangaObtenido.capitulos = Api.GetChapters(manga, "fa fa-chevron-down fa-fw");
+
   return MangaObtenido;
 }
