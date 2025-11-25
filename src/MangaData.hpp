@@ -37,6 +37,7 @@ public:
 class Manga {
 public:
   std::string nombre;
+  std::string baseurl;
   std::vector<Capitulo> capitulos;
   int numerocapitulos = capitulos.size();
 };

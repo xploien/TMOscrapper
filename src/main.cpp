@@ -4,10 +4,12 @@
 #include "Tools.hpp"
 #include <iostream>
 #include <string>
+#include <vector>
 
 std::string Tosearch;
 int uioption;
 bool shouldclose = false;
+std::vector<Manga> SavedMangas = LoadAllMangas();
 
 MangaData logic;
 Tools tooling;
@@ -19,7 +21,7 @@ int main(int argc, char *argv[]) {
 
     std::cout << "INGRESE UNA OPCION: \n \n";
     std::cout << "1.- Buscar y guardar manga \n";
-    std::cout << "2.- Descargar Manga\n";
+    std::cout << "2.- Listar mangas guardados \n";
     std::cout << "0.- Salir \n";
     std::cin >> uioption;
 
@@ -30,17 +32,40 @@ int main(int argc, char *argv[]) {
 
       std::string mangaurl = logic.FindMangaURl(Tosearch);
 
-      Manga Mimanga = logic.GetMangaFromUrl(mangaurl);
+      Manga Mimanga;
 
-      SavetoDB(Mimanga);
+      bool exists = false;
 
-      tooling.imprimirTodosLosCapitulos(Mimanga);
+      for (const Manga &man : SavedMangas) {
+        if (man.baseurl == mangaurl) {
+          exists = true;
+          Mimanga = man;
+          break;
+        }
+      }
 
-      api.DownloadImage(Mimanga.capitulos[0].traducciones[0].UrlImagenes[1],
-                        "prueba1");
+      if (!exists) {
+        Mimanga = logic.GetMangaFromUrl(mangaurl);
+        Mimanga.baseurl = mangaurl;
+
+        SavetoDB(Mimanga);
+        SavedMangas.push_back(Mimanga);
+
+        tooling.imprimirTodosLosCapitulos(Mimanga);
+
+        api.DownloadImage(Mimanga.capitulos[0].traducciones[0].UrlImagenes[1],
+                          "prueba1");
+
+        std::vector<Manga> SavedMangas = LoadAllMangas();
+      }
+      std::cerr << "ese manga ya esta en la base de datos \n";
+
     } break;
     case 2: {
-      std::cout << "Uninmplemented \n";
+      std::cout << "Los mangas Guardados son: \n";
+      for (Manga man : SavedMangas) {
+        std::cout << man.nombre << "\n";
+      }
       break;
     }
     case 0: {
@@ -55,6 +80,5 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  std::cout << " Se llego al final del while Adios \n";
   return 0;
 }

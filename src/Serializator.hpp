@@ -1,5 +1,4 @@
 #pragma once
-#include <cstdlib>
 #include <filesystem>
 #include <iostream>
 #include <string>
@@ -70,33 +69,60 @@ inline std::string GetSaveDir() {
 }
 
 namespace cereal {
-template <class Archive> void serialize(Archive &ar, Traducion &t) {
-  ar(t.Url, t.NombreTraductor, t.UrlImagenes, t.UnfilterdUrl);
-}
 
+template <class Archive> void serialize(Archive &ar, Traducion &t) {
+  ar(cereal::make_nvp("Url", t.Url),
+     cereal::make_nvp("NombreTraductor", t.NombreTraductor),
+     cereal::make_nvp("UrlImagenes", t.UrlImagenes),
+     cereal::make_nvp("UnfilteredUrl", t.UnfilterdUrl));
+}
 template <class Archive> void serialize(Archive &ar, Capitulo &c) {
-  ar(c.NumCapitulo, c.NameCapitulo, c.traducciones, c.NumTraduciones);
+  ar(cereal::make_nvp("Numero", c.NumCapitulo),
+     cereal::make_nvp("Nombre", c.NameCapitulo),
+     cereal::make_nvp("Traducciones", c.traducciones),
+     cereal::make_nvp("CantidadTraducciones", c.NumTraduciones));
 }
 
 template <class Archive> void serialize(Archive &ar, Manga &m) {
-  ar(m.nombre, m.capitulos, m.numerocapitulos);
+  ar(cereal::make_nvp("Nombre", m.nombre),
+     cereal::make_nvp("URlbase", m.baseurl),
+     cereal::make_nvp("Capitulos", m.capitulos),
+     cereal::make_nvp("CantidadCapitulos", m.numerocapitulos));
 }
+
 } // namespace cereal
 
 inline void SavetoDB(const Manga &manga) {
   std::string filename = manga.nombre;
-  std::string path = GetSaveDir() + filename;
+  std::string path = GetSaveDir() + "/" + filename + ".json";
   std::ofstream os(path, std::ios::binary);
   cereal::JSONOutputArchive archive(os); // out
+  archive(cereal::make_nvp("manga", manga));
   archive(manga);
 }
 
-inline Manga LoadFromDB(const Manga &selmanga) {
-  std::string filename = selmanga.nombre;
-  std::string path = GetSaveDir() + filename;
-  std::ifstream is(path, std::ios::binary);
-  cereal::JSONInputArchive archive(is); // in
+inline Manga LoadFromDB(const std::filesystem::path &filepath) {
+  std::ifstream is(filepath, std::ios::binary);
+  cereal::JSONInputArchive archive(is);
   Manga manga;
-  archive(manga);
+  archive(cereal::make_nvp("manga", manga));
   return manga;
+}
+
+inline std::vector<Manga> LoadAllMangas() {
+  std::vector<Manga> list;
+  std::filesystem::path dir = GetSaveDir();
+
+  for (const auto &file : std::filesystem::directory_iterator(dir)) {
+    if (file.is_regular_file() && file.path().extension() == ".json") {
+      try {
+        Manga m = LoadFromDB(file.path());
+        list.push_back(std::move(m));
+      } catch (...) {
+        std::cerr << "Error cargando archivo: " << file.path() << "\n";
+      }
+    }
+  }
+
+  return list;
 }
