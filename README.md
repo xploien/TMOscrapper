@@ -6,3 +6,4 @@ Permite descargar mangas enteros de tmo;
 - [ ] Image Downloader and packager
 - [x] Serialization and Data base
 - [ ] Gui or Tui
+- [ ] first release
