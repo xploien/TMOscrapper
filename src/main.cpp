@@ -1,3 +1,4 @@
+#include "Downloader.hpp"
 #include "MangaData.hpp"
 #include "MyApi.hpp"
 #include "Serializator.hpp"
@@ -15,18 +16,20 @@ MangaData logic;
 Tools tooling;
 MyApi api;
 
+Downloader dloader;
 int main(int argc, char *argv[]) {
 
   while (!shouldclose) {
 
     std::cout << "INGRESE UNA OPCION: \n \n";
     std::cout << "1.- Buscar y guardar manga \n";
-    std::cout << "2.- Listar mangas guardados \n";
+    std::cout << "2.- Descargar Manga \n";
     std::cout << "0.- Salir \n";
     std::cin >> uioption;
 
     switch (uioption) {
     case 1: {
+
       std::cout << "ingresa el titulo a buscar: \n";
       std::cin >> Tosearch;
 
@@ -53,19 +56,54 @@ int main(int argc, char *argv[]) {
 
         tooling.imprimirTodosLosCapitulos(Mimanga);
 
-        api.DownloadImage(Mimanga.capitulos[0].traducciones[0].UrlImagenes[1],
-                          "prueba1");
+        SavedMangas = LoadAllMangas();
+      } else {
+        std::cerr << "ese manga ya esta en la base de datos Desearia re "
+                     "escanearlo ?\n";
+        std::cout << "1.= si \n 0. = no";
+        int userselec;
+        std::cin >> userselec;
+        if (userselec) {
+          Mimanga = logic.GetMangaFromUrl(mangaurl);
+          Mimanga.baseurl = mangaurl;
 
-        std::vector<Manga> SavedMangas = LoadAllMangas();
+          SavetoDB(Mimanga);
+          SavedMangas.push_back(Mimanga);
+
+          tooling.imprimirTodosLosCapitulos(Mimanga);
+          //
+          // api.DownloadImage(Mimanga.capitulos[0].traducciones[0].UrlImagenes[1],
+          //                   "prueba1.webm");
+          //
+          SavedMangas = LoadAllMangas();
+        }
       }
-      std::cerr << "ese manga ya esta en la base de datos \n";
 
     } break;
+
     case 2: {
       std::cout << "Los mangas Guardados son: \n";
+      int ix = 1;
       for (Manga man : SavedMangas) {
-        std::cout << man.nombre << "\n";
+        std::cout << ix << ".- " << man.nombre << "\n";
+        ix++;
       }
+      std::cout << "Elije el numero a Descargar \n";
+
+      int usrseleccase2;
+      std::cin >> usrseleccase2;
+      usrseleccase2 = usrseleccase2 - 1;
+      Manga TestTemp = SavedMangas[usrseleccase2];
+
+      std::vector<int> mangaindex = dloader.MangaFilterIndex(TestTemp);
+      std::cout << "debug de indexes: ";
+      for (int i : mangaindex) {
+        std::cout << i << "\n";
+      }
+
+      dloader.setSpeed(300);
+      dloader.setThreads(4);
+      dloader.MangatoCBZ(TestTemp, mangaindex);
       break;
     }
     case 0: {
@@ -79,6 +117,5 @@ int main(int argc, char *argv[]) {
     }
     }
   }
-
   return 0;
 }

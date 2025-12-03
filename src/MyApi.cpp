@@ -340,7 +340,7 @@ std::vector<Capitulo> MyApi::GetChapters(const std::string rawPage,
   std::string Linea;
   std::vector<Capitulo> Resultado;
   std::stringstream ss(rawPage);
-  std::regex patron(R"(\b\d+\.\d+\b)"); // Números con punto decimal
+  std::regex patron(R"(\d+\.\d+)"); // Números con punto decimal sin b
   std::regex Newpatron(R"((https):\/\/[^\s\/$.?#].[^\s]*)");
   std::smatch Coincidencia;
   while (std::getline(ss, Linea)) {
@@ -351,22 +351,40 @@ std::vector<Capitulo> MyApi::GetChapters(const std::string rawPage,
         std::string url = Coincidencia.str();
 
         float numcap = std::stof(url);
+        // Extraer nombre del capítulo (después del número)
+        size_t posFinNumero = Coincidencia.position() + Coincidencia.length();
+        std::string resto = Linea.substr(posFinNumero);
+
+        // Limpiar espacios iniciales
+        std::string nombreCapitulo = "";
+        size_t inicio = resto.find_first_not_of(" \t");
+        if (inicio != std::string::npos) {
+          nombreCapitulo = resto.substr(inicio);
+          // Limpiar espacios finales y caracteres HTML
+          nombreCapitulo.erase(nombreCapitulo.find_last_not_of(" \t\r\n<>") +
+                               1);
+        }
+
+        if (nombreCapitulo.empty()) {
+          nombreCapitulo = "Unamed";
+        }
 
         Capitulo nuevoCapitulo;
 
         nuevoCapitulo.NumCapitulo = numcap;
-        nuevoCapitulo.NameCapitulo = "sorry aun nose como obtener el nommbre";
+        nuevoCapitulo.NameCapitulo = nombreCapitulo;
         // nuevoCapitulo.NameCapitulo = "Capítulo " + std::to_string(numcap);
 
         std::streampos posicionActual = ss.tellg(); // Guardar posición
         nuevoCapitulo.traducciones =
             Findnext(ss, posicionActual, "zonatmo.com/groups/",
                      TextoIdentificador, Newpatron);
-
+        nuevoCapitulo.NumTraduciones = nuevoCapitulo.traducciones.size();
         Resultado.push_back(nuevoCapitulo);
       }
     }
   }
+
   return Resultado;
 }
 

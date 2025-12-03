@@ -86,8 +86,8 @@ template <class Archive> void serialize(Archive &ar, Capitulo &c) {
 template <class Archive> void serialize(Archive &ar, Manga &m) {
   ar(cereal::make_nvp("Nombre", m.nombre),
      cereal::make_nvp("URlbase", m.baseurl),
-     cereal::make_nvp("Capitulos", m.capitulos),
-     cereal::make_nvp("CantidadCapitulos", m.numerocapitulos));
+     cereal::make_nvp("CantidadCapitulos", m.numerocapitulos),
+     cereal::make_nvp("Capitulos", m.capitulos));
 }
 
 } // namespace cereal
@@ -98,7 +98,7 @@ inline void SavetoDB(const Manga &manga) {
   std::ofstream os(path, std::ios::binary);
   cereal::JSONOutputArchive archive(os); // out
   archive(cereal::make_nvp("manga", manga));
-  archive(manga);
+  // archive(manga);
 }
 
 inline Manga LoadFromDB(const std::filesystem::path &filepath) {

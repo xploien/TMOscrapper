@@ -1,3 +1,6 @@
+#ifndef Myapi_HPP
+#define Myapi_HPP
+
 #include "MangaData.hpp"
 #include <regex>
 #include <string>
@@ -40,3 +43,4 @@ public:
 
 //  std::regex patron(R"((https):\/\/[^\s\/$.?#].[^\s]*)");
 // url
+#endif // Myapi

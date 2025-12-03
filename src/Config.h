@@ -1,0 +1,1 @@
+#define DownloadInterval = 300
