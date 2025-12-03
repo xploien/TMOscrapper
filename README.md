@@ -3,7 +3,7 @@ Permite descargar mangas enteros de tmo;
 ## update:
 code is finally functional but at an early stage
 can be compiled with cmake as a normal cmake build 
-###Dependencies: 
+### Dependencies: 
 - libzip
 - curl
 
@@ -34,6 +34,6 @@ mkdir -p build && cd build && cmake .. && make -j$(nproc) && cd ..
 ## Roadmap 
 - [x] Get Manga data from tmo 
 - [x] Image Downloader and packager
-- [x] Serialization and Data base
+- [x] Serialization and Database
 - [ ] Gui or Tui
 - [ ] first release
