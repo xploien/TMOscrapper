@@ -20,6 +20,17 @@ std::string MangaData::FindMangaURl(std::string titulo) {
 
   return Entradas[selecionado];
 }
+std::vector<SearchResult>
+MangaData::GetSearchResultsFromUrl(std::string titulo) {
+  MyApi Api;
+  std::string pagina =
+      Api.GetRawPage(titulo, "https://zonatmo.com/library?title=");
+
+  std::vector<SearchResult> Entradas =
+      Api.filterPageWithImage(pagina, "zonatmo.com/library/");
+
+  return Entradas;
+}
 
 Manga MangaData::GetMangaFromUrl(std::string Url) {
   MyApi Api;

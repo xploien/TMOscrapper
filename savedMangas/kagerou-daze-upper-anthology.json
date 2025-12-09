@@ -1,0 +1,56 @@
+{
+    "manga": {
+        "Nombre": "kagerou-daze-upper-anthology",
+        "URlbase": "https://zonatmo.com/library/manga/14464/kagerou-daze-upper-anthology",
+        "CantidadCapitulos": 2,
+        "Capitulos": [
+            {
+                "Numero": 2.0,
+                "Nombre": "Interruptor de Onii chan",
+                "Traducciones": [
+                    {
+                        "Url": "https://zonatmo.com/viewer/5af702143472d/paginated",
+                        "NombreTraductor": "BloodStain-Traductions\">Bloo",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20170707/5af702143472d/1_595f00ac4f3fc.webp",
+                            "https://img1tmo.com/uploads/20170707/5af702143472d/2_595f00ac4f3fc.webp",
+                            "https://img1tmo.com/uploads/20170707/5af702143472d/3_595f00ac4f3fc.webp",
+                            "https://img1tmo.com/uploads/20170707/5af702143472d/4_595f00ac4f3fc.webp",
+                            "https://img1tmo.com/uploads/20170707/5af702143472d/5_595f00ac4f3fc.webp",
+                            "https://img1tmo.com/uploads/20170707/5af702143472d/6_595f00ac4f3fc.webp",
+                            "https://img1tmo.com/uploads/20170707/5af702143472d/7_595f00ac4f3fc.webp",
+                            "https://img1tmo.com/uploads/20170707/5af702143472d/8_595f00ac4f3fc.webp",
+                            "https://img1tmo.com/uploads/20170707/5af702143472d/9_595f00ac4f3fc.webp",
+                            "https://img1tmo.com/uploads/20170707/5af702143472d/10_595f00ac4f3fc.webp",
+                            "https://img1tmo.com/uploads/20170707/5af702143472d/11_595f00ac4f3fc.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/239834"
+                    }
+                ],
+                "CantidadTraducciones": 1
+            },
+            {
+                "Numero": 1.0,
+                "Nombre": "La Ruleta Rusa del Mekakushi Dan",
+                "Traducciones": [
+                    {
+                        "Url": "https://zonatmo.com/viewer/5af7021404db2/paginated",
+                        "NombreTraductor": "Chgakk-Fansub\">Chū",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20160112/5af7021404db2/page1_193917.webp",
+                            "https://img1tmo.com/uploads/20160112/5af7021404db2/page2_193917.webp",
+                            "https://img1tmo.com/uploads/20160112/5af7021404db2/page3_193917.webp",
+                            "https://img1tmo.com/uploads/20160112/5af7021404db2/page4_193917.webp",
+                            "https://img1tmo.com/uploads/20160112/5af7021404db2/page5_193917.webp",
+                            "https://img1tmo.com/uploads/20160112/5af7021404db2/page6_193917.webp",
+                            "https://img1tmo.com/uploads/20160112/5af7021404db2/page7_193917.webp",
+                            "https://img1tmo.com/uploads/20160112/5af7021404db2/z_193917.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/150939"
+                    }
+                ],
+                "CantidadTraducciones": 1
+            }
+        ]
+    }
+}

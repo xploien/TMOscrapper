@@ -1,0 +1,135 @@
+{
+    "manga": {
+        "Nombre": "kagerou-project-novelas",
+        "URlbase": "https://zonatmo.com/library/novel/61011/kagerou-project-novelas",
+        "CantidadCapitulos": 4,
+        "Capitulos": [
+            {
+                "Numero": 4.0,
+                "Nombre": "Kisaragi Attention",
+                "Traducciones": [
+                    {
+                        "Url": "https://zonatmo.com/viewer/b2d2e236abb3bcc3d263fd1a1af841ff/paginated",
+                        "NombreTraductor": "dake-okotaru",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/fa2c6fa2.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/57cf1ab1.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/5f73a4a8.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/13f02ca7.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/2cbc349e.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/6f3b525d.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/7bfb42c0.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/0f4e53e7.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/53a0653e.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/571a4b95.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/bda3ece3.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/adbd9bb4.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/b8a09b5c.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/694178bd.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/57e82d16.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/3217902e.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/7f640c27.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/51035bdd.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/fc15d812.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/c489412f.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/1be06b31.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/ff578400.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/183bb14d.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/b6bc14a4.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/19523f68.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/6264222d.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/29995d75.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/82115ebf.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/643d1d37.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/f30f4050.webp",
+                            "https://img1tmo.com/uploads/20210701/b2d2e236abb3bcc3d263fd1a1af841ff/e4f02300.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/786026"
+                    }
+                ],
+                "CantidadTraducciones": 1
+            },
+            {
+                "Numero": 3.0,
+                "Nombre": "Kagerou Daze II",
+                "Traducciones": [
+                    {
+                        "Url": "https://zonatmo.com/viewer/3197f54b9e6e3ffade6dd003041cd041/paginated",
+                        "NombreTraductor": "dake-okotaru",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20210701/3197f54b9e6e3ffade6dd003041cd041/23e9f134.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/786010"
+                    }
+                ],
+                "CantidadTraducciones": 1
+            },
+            {
+                "Numero": 2.0,
+                "Nombre": "JINZOU ENEMY",
+                "Traducciones": [
+                    {
+                        "Url": "https://zonatmo.com/viewer/5387f9c16108d4a692c57a06ffdf6508/paginated",
+                        "NombreTraductor": "dake-okotaru",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/c6b9cee5.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/a3c0ebb5.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/f5deb012.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/b16b7643.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/22e025c0.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/34ba67dd.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/38915ba4.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/b6de6005.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/fca8d10c.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/618b9fed.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/5a9b874f.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/36207a12.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/31a0906e.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/0f1ee6f8.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/d7842e37.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/98493beb.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/c51f6290.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/f41b7d33.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/b2d9ed0c.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/8e9112fa.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/e09567b7.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/243aa14b.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/70a16f25.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/814cc743.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/3694b9ed.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/72223480.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/3ce0a467.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/c08595fb.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/2ee955a6.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/dc0b8831.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/42a74c13.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/1f6d7fb8.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/c3f31c94.webp",
+                            "https://img1tmo.com/uploads/20210701/5387f9c16108d4a692c57a06ffdf6508/4ea6f8d1.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/786000"
+                    }
+                ],
+                "CantidadTraducciones": 1
+            },
+            {
+                "Numero": 1.0,
+                "Nombre": "Unamed",
+                "Traducciones": [
+                    {
+                        "Url": "https://zonatmo.com/viewer/87f93c3f1ac206c9b360d98b078a4406/paginated",
+                        "NombreTraductor": "dake-okotaru",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20210626/87f93c3f1ac206c9b360d98b078a4406/ffd339ba.webp",
+                            "https://img1tmo.com/uploads/20210626/87f93c3f1ac206c9b360d98b078a4406/c23f47e9.webp",
+                            "https://img1tmo.com/uploads/20210626/87f93c3f1ac206c9b360d98b078a4406/ceddb517.webp",
+                            "https://img1tmo.com/uploads/20210626/87f93c3f1ac206c9b360d98b078a4406/0b2c6c2e.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/782879"
+                    }
+                ],
+                "CantidadTraducciones": 1
+            }
+        ]
+    }
+}

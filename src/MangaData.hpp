@@ -42,10 +42,17 @@ public:
   int numerocapitulos = capitulos.size();
 };
 
+class SearchResult {
+public:
+  std::string MangaUrl;
+  std::string ImageUrl;
+};
+
 class MangaData {
 public:
   std::string FindMangaURl(std::string titulo);
   Manga GetMangaFromUrl(std::string Url);
-};
 
+  std::vector<SearchResult> GetSearchResultsFromUrl(std::string titulo);
+};
 #endif // MANGADATA_H

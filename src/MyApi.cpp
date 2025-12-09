@@ -1,4 +1,5 @@
 #include "MyApi.hpp"
+#include "MangaData.hpp"
 #include <curl/easy.h>
 #include <iostream>
 #include <string>
@@ -410,6 +411,40 @@ MyApi::filterPage(const std::string rawPage,
         }
 
         Resultado.push_back(url);
+      }
+    }
+  }
+  return Resultado;
+}
+std::vector<SearchResult>
+MyApi::filterPageWithImage(const std::string rawPage,
+                           const std::string TextoIdentificador) {
+  std::string Linea;
+  std::vector<SearchResult> Resultado;
+  std::stringstream ss(rawPage);
+  std::regex patron(R"((https):\/\/[^\s\/$.?#].[^\s]*)");
+  std::regex patronImage(R"(background-image:\s*url\('([^']+)'\))");
+  std::smatch Coincidencia;
+  while (std::getline(ss, Linea)) {
+    if (Linea.find(TextoIdentificador) != std::string::npos) {
+      if (std::regex_search(Linea, Coincidencia, patron)) {
+
+        std::string url = Coincidencia.str();
+
+        // Eliminar los últimos 2 caracteres
+        if (url.length() >= 2) {
+          url.pop_back();
+          url.pop_back();
+        }
+        SearchResult currentresult;
+        currentresult.MangaUrl = url;
+
+        std::streampos posicionActual = ss.tellg(); // Guardar posición
+        currentresult.ImageUrl = FindNextString(
+            ss, posicionActual, "https://otakuteca.com/images/books/cover",
+            TextoIdentificador, patronImage);
+
+        Resultado.push_back(currentresult);
       }
     }
   }

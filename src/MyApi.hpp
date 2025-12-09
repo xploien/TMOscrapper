@@ -31,6 +31,9 @@ public:
 
   std::vector<std::string> filterPage(const std::string rawPage,
                                       const std::string TextoIdentificador);
+  std::vector<SearchResult>
+  filterPageWithImage(const std::string rawPage,
+                      const std::string TextoIdentificador);
 
   std::vector<std::string> CleanUrl(const std::vector<std::string> urlvector);
   std::string CleanUrlString(const std::string &url);

@@ -1,121 +1,39 @@
-#include "Downloader.hpp"
 #include "MangaData.hpp"
-#include "MyApi.hpp"
 #include "Serializator.hpp"
-#include "Tools.hpp"
+#include "gui/Clay.hpp"
+#include "include/clay/renderers/raylib/raylib.h"
 #include <iostream>
 #include <string>
 #include <vector>
+AppClay app;
 
-std::string Tosearch;
-int uioption;
-bool shouldclose = false;
-std::vector<Manga> SavedMangas = LoadAllMangas();
-
-MangaData logic;
-Tools tooling;
-MyApi api;
-
-Downloader dloader;
 int main(int argc, char *argv[]) {
 
-  while (!shouldclose) {
+  // std::vector<Manga> SavedMangas = LoadAllMangas();
+  //
+  //   std::cout << "Los mangas Guardados son: \n";
+  //       int ix = 1;
+  //       for (Manga man : SavedMangas) {
+  //         std::cout << ix << ".- " << man.nombre << "\n";
+  //         ix++;
+  //       }
 
-    std::cout << "INGRESE UNA OPCION: \n \n";
-    std::cout << "1.- Buscar y guardar manga \n";
-    std::cout << "2.- Descargar Manga \n";
-    std::cout << "0.- Salir \n";
-    std::cin >> uioption;
+  AppClay app;
+  app.Initialize(911, 640, "oWl",
+                 FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI |
+                     FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT,
+                 "resources/ComicShannsMonoNerdFont-Regular.otf", 48);
 
-    switch (uioption) {
-    case 1: {
+  std::cout << "El motor Clay Iniciado\n";
 
-      std::cout << "ingresa el titulo a buscar: \n";
-      std::cin >> Tosearch;
+  while (!WindowShouldClose()) {
+    Clay_RenderCommandArray rendercommands = app.CreateLayout();
 
-      std::string mangaurl = logic.FindMangaURl(Tosearch);
+    BeginDrawing();
+    // ClearBackground({239, 241, 245, 255});
+    app.Render(rendercommands);
 
-      Manga Mimanga;
-
-      bool exists = false;
-
-      for (const Manga &man : SavedMangas) {
-        if (man.baseurl == mangaurl) {
-          exists = true;
-          Mimanga = man;
-          break;
-        }
-      }
-
-      if (!exists) {
-        Mimanga = logic.GetMangaFromUrl(mangaurl);
-        Mimanga.baseurl = mangaurl;
-
-        SavetoDB(Mimanga);
-        SavedMangas.push_back(Mimanga);
-
-        tooling.imprimirTodosLosCapitulos(Mimanga);
-
-        SavedMangas = LoadAllMangas();
-      } else {
-        std::cerr << "ese manga ya esta en la base de datos Desearia re "
-                     "escanearlo ?\n";
-        std::cout << "1.= si \n 0. = no";
-        int userselec;
-        std::cin >> userselec;
-        if (userselec) {
-          Mimanga = logic.GetMangaFromUrl(mangaurl);
-          Mimanga.baseurl = mangaurl;
-
-          SavetoDB(Mimanga);
-          SavedMangas.push_back(Mimanga);
-
-          tooling.imprimirTodosLosCapitulos(Mimanga);
-          //
-          // api.DownloadImage(Mimanga.capitulos[0].traducciones[0].UrlImagenes[1],
-          //                   "prueba1.webm");
-          //
-          SavedMangas = LoadAllMangas();
-        }
-      }
-
-    } break;
-
-    case 2: {
-      std::cout << "Los mangas Guardados son: \n";
-      int ix = 1;
-      for (Manga man : SavedMangas) {
-        std::cout << ix << ".- " << man.nombre << "\n";
-        ix++;
-      }
-      std::cout << "Elije el numero a Descargar \n";
-
-      int usrseleccase2;
-      std::cin >> usrseleccase2;
-      usrseleccase2 = usrseleccase2 - 1;
-      Manga TestTemp = SavedMangas[usrseleccase2];
-
-      std::vector<int> mangaindex = dloader.MangaFilterIndex(TestTemp);
-      std::cout << "debug de indexes: ";
-      for (int i : mangaindex) {
-        std::cout << i << "\n";
-      }
-
-      dloader.setSpeed(300);
-      dloader.setThreads(4);
-      dloader.MangatoCBZ(TestTemp, mangaindex);
-      break;
-    }
-    case 0: {
-      shouldclose = true;
-      break;
-    }
-    default: {
-
-      std::cout << " Selecione una opcion correcta \n";
-      break;
-    }
-    }
+    EndDrawing();
   }
   return 0;
 }
