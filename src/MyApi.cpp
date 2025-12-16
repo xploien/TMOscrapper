@@ -1,9 +1,24 @@
 #include "MyApi.hpp"
+#include "Curl.hpp"
 #include "MangaData.hpp"
-#include <curl/easy.h>
+#include <cstddef>
+#include <curl/curl.h>
 #include <iostream>
 #include <string>
 #include <vector>
+
+std::string extractUrl(const std::string &bgImageStr) {
+  size_t start = bgImageStr.find("url('");
+  if (start == std::string::npos)
+    return "";
+
+  start += 5;                               // Mover después de "url('"
+  size_t end = bgImageStr.find("'", start); // Buscar la siguiente comilla
+  if (end == std::string::npos)
+    return "";
+
+  return bgImageStr.substr(start, end - start);
+}
 
 bool MyApi::DownloadImage(const std::string &url, const std::string &filename) {
   CURL *curl;
@@ -253,7 +268,8 @@ std::string MyApi::FindNextString(std::stringstream &ss,
       if (std::regex_search(lineaExtra, Coincidencia, patron)) {
 
         std::string url = Coincidencia.str();
-
+        // std::cout << "debug2 despues de regex antes de popback: " << url
+        //           << "\n";
         url.pop_back();
         // Eliminar los últimos 2 caracteres
         // if (url.length() >= 2) {
@@ -416,6 +432,7 @@ MyApi::filterPage(const std::string rawPage,
   }
   return Resultado;
 }
+
 std::vector<SearchResult>
 MyApi::filterPageWithImage(const std::string rawPage,
                            const std::string TextoIdentificador) {
@@ -431,18 +448,26 @@ MyApi::filterPageWithImage(const std::string rawPage,
 
         std::string url = Coincidencia.str();
 
-        // Eliminar los últimos 2 caracteres
+        SearchResult currentresult;
+        std::cout << "debug mangaurl es: " << url << "\n";
+        currentresult.nameManga = extractSlug(url);
+        std::streampos posicionActual = ss.tellg(); // Guardar posición
+        std::string ImageLine =
+            FindNextString(ss, posicionActual, "background-image",
+                           TextoIdentificador, patronImage);
+
+        std::cout << "debug1 Antesde: " << ImageLine << "\n";
+        currentresult.ImageUrl = extractUrl(ImageLine);
+        std::cout << "debug2 Target: " << currentresult.ImageUrl << "\n";
+        // Eliminar los últimos 4 caracteres
         if (url.length() >= 2) {
           url.pop_back();
           url.pop_back();
+          url.pop_back();
+          url.pop_back();
         }
-        SearchResult currentresult;
-        currentresult.MangaUrl = url;
 
-        std::streampos posicionActual = ss.tellg(); // Guardar posición
-        currentresult.ImageUrl = FindNextString(
-            ss, posicionActual, "https://otakuteca.com/images/books/cover",
-            TextoIdentificador, patronImage);
+        currentresult.MangaUrl = url;
 
         Resultado.push_back(currentresult);
       }

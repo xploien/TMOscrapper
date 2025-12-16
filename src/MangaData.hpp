@@ -45,6 +45,7 @@ public:
 class SearchResult {
 public:
   std::string MangaUrl;
+  std::string nameManga;
   std::string ImageUrl;
 };
 

@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
   //       }
 
   AppClay app;
-  app.Initialize(911, 640, "oWl",
+  app.Initialize(911, 640, "tmo",
                  FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_HIGHDPI |
                      FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT,
                  "resources/ComicShannsMonoNerdFont-Regular.otf", 48);

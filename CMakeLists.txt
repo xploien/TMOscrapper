@@ -13,6 +13,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # ============================================
 # BUSCAR DEPENDENCIAS
 # ============================================
+
+# CURL
 find_package(CURL REQUIRED)
 if(NOT CURL_FOUND)
   find_package(PkgConfig REQUIRED)
@@ -20,8 +22,12 @@ if(NOT CURL_FOUND)
 endif()
 
 find_package(PkgConfig REQUIRED)
+
+
+# LIBZIP
 pkg_check_modules(LIBZIP REQUIRED libzip)
 find_package(raylib REQUIRED)
+
 
 if(NOT LIBZIP_FOUND)
   find_path(LIBZIP_INCLUDE_DIR zip.h)
@@ -32,7 +38,7 @@ if(NOT LIBZIP_FOUND)
     set(LIBZIP_INCLUDE_DIRS ${LIBZIP_INCLUDE_DIR})
     message(STATUS "✓ LIBZIP found manually at ${LIBZIP_LIBRARY}")
   else()
-    message(FATAL_ERROR "libzip not found. Install: sudo apt-get install libzip-dev")
+    message(FATAL_ERROR "libzip not found. Install: sudo apt-get install libzip-dev (o equivalente)")
   endif()
 endif()
 
@@ -44,6 +50,7 @@ find_package(Threads REQUIRED)
 # NO uses GLOB_RECURSE porque incluye archivos no deseados
 set(SOURCES
     "${CMAKE_SOURCE_DIR}/src/main.cpp"
+    "${CMAKE_SOURCE_DIR}/src/Curl.cpp"
     "${CMAKE_SOURCE_DIR}/src/MyApi.cpp"
     "${CMAKE_SOURCE_DIR}/src/Tools.cpp"
     "${CMAKE_SOURCE_DIR}/src/MangaData.cpp"

@@ -8,11 +8,11 @@
 #include <cereal/types/string.hpp>
 #include <cereal/types/vector.hpp>
 #include <fstream>
-
-// ---------------------------------------------------------
-//  Obtener ruta REAL del ejecutable (resuelve symlinks).
-//  Luego construir <exeDir>/savedMangas
-// ---------------------------------------------------------
+// asumiendo que claude tenag razon...
+//  ---------------------------------------------------------
+//   Obtener ruta REAL del ejecutable (resuelve symlinks).
+//   Luego construir <exeDir>/savedMangas
+//  ---------------------------------------------------------
 inline std::string GetSaveDir() {
 #if defined(_WIN32)
 #include <windows.h>
@@ -67,6 +67,8 @@ inline std::string GetSaveDir() {
 
   return saveDir.string();
 }
+
+// TODO mejorar el orden
 
 namespace cereal {
 

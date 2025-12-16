@@ -22,6 +22,35 @@ MangaData logic;
 Tools tooling;
 MyApi api;
 Downloader dloader;
+
+#include <iomanip>
+#include <sstream>
+
+std::string urlEncode(const std::string &value) {
+  std::ostringstream escaped;
+  escaped.fill('0');
+  escaped << std::hex;
+
+  for (char c : value) {
+    // Mantener alphanumericos y algunos caracteres seguros
+    if (isalnum(c) || c == '-' || c == '_' || c == '.' || c == '~') {
+      escaped << c;
+    }
+    // Convertir espacio a '+'
+    else if (c == ' ') {
+      escaped << '+';
+    }
+    // Codificar todo lo demás como %XX
+    else {
+      escaped << std::uppercase;
+      escaped << '%' << std::setw(2) << int((unsigned char)c);
+      escaped << std::nouppercase;
+    }
+  }
+
+  return escaped.str();
+}
+
 #define MAX_INPUT_CHARS 32
 char name[MAX_INPUT_CHARS + 1] = "\0";
 int letterCount = 0;
@@ -37,6 +66,7 @@ void inputhand() {
     if ((key >= 32) && (key <= 126) && (letterCount < MAX_INPUT_CHARS)) {
       name[letterCount] = (char)key;
       letterCount++;
+      name[letterCount] = '\0';
     }
     key = GetCharPressed();
   }
@@ -44,15 +74,20 @@ void inputhand() {
   // Borrar caracter
   if (IsKeyPressed(KEY_BACKSPACE) && letterCount > 0) {
     letterCount--;
+    name[letterCount] = '\0';
   }
-
-  name[letterCount] = '\0';
 
   if (IsKeyPressed(KEY_ENTER) && letterCount > 0) {
     SearchResults.clear();
     std::string searchquey(name);
+
+    // URL encode el query antes de enviarlo
+    std::string encodedQuery = urlEncode(searchquey);
+    std::cout << "DEBUG: Original query: " << searchquey << "\n";
+    std::cout << "DEBUG: Encoded query: " << encodedQuery << "\n";
+
     std::vector<SearchResult> resultsfromurl =
-        logic.GetSearchResultsFromUrl(searchquey);
+        logic.GetSearchResultsFromUrl(encodedQuery);
     SearchResults = resultsfromurl;
     // name[0] = '\0'; // no funciona
     // for (int i = 0; i > strlen(name); i++) {
@@ -133,7 +168,45 @@ static void altbutton(Clay_String text, ButtonCallback callback) {
                                          .fontSize = 20,
                                      }));
   }
-} // Gui
+}
+
+Texture2D imagef;
+static void MangaPanel(Clay_String manname, Texture2D *image,
+                       ButtonCallback callback) {
+  // Obtener referencia a la lista de callbacks del frame actual
+
+  frameCallbacks.push_back(callback);
+  Clay_Color actualcolor = teal_dark;
+  CLAY_AUTO_ID(.wrapped = {
+                   .layout =
+                       {
+                           .sizing = {.width = CLAY_SIZING_GROW(),
+                                      .height = CLAY_SIZING_GROW()},
+                           .padding = {16, 16, 8, 8},
+                           .childGap = basegap,
+                           .childAlignment = {.x = CLAY_ALIGN_X_CENTER},
+                           .layoutDirection = CLAY_TOP_TO_BOTTOM,
+                       },
+                   .backgroundColor = yellow_dark,
+                   .cornerRadius = {baseroundcorners},
+               }) {
+    Clay_OnHover(buttonCallbackWrapper,
+                 static_cast<void *>(&frameCallbacks.back()));
+
+    CLAY_AUTO_ID(.wrapped = {
+                     .layout = {.sizing = {.width = CLAY_SIZING_PERCENT(0.95),
+                                           .height =
+                                               CLAY_SIZING_PERCENT(0.95)}},
+                     .image = {.imageData = image},
+                 }){};
+    CLAY_TEXT(manname, CLAY_TEXT_CONFIG(.wrapped = {
+                                            .textColor = text_light,
+                                            .fontId = Gui::FONT_ID_BODY_16,
+                                            .fontSize = 20,
+                                        }));
+  }
+}
+// Gui
 void Gui::mylayout() {
 
   frameCallbacks.clear();
@@ -242,9 +315,9 @@ void Gui::mylayout() {
         if (!SearchResults.empty()) {
           for (SearchResult &result : SearchResults) {
             // Copiar el string a un buffer nuevo
-            size_t len = result.MangaUrl.size();
+            size_t len = result.nameManga.size();
             auto buffer = std::make_unique<char[]>(len + 1);
-            std::strcpy(buffer.get(), result.MangaUrl.c_str());
+            std::strcpy(buffer.get(), result.nameManga.c_str());
 
             // Crear Clay_String apuntando al buffer
             Clay_String clayStr = {.isStaticallyAllocated = false,
@@ -253,8 +326,16 @@ void Gui::mylayout() {
 
             // Guardar el buffer para que persista durante el frame
             frameStringBuffers.push_back(std::move(buffer));
+            // Texture2D *mangacover =
+            // ImageLoader::GetImageFromUrl(result.ImageUrl);
+            // Texture2D *mangacover = ImageLoader::GetImage("mytest",
+            // "/home/poe/dormir.png");
+            Texture2D *mangacover =
+                ImageLoader::GetImageFromUrl(result.ImageUrl);
 
-            altbutton(clayStr, srealm);
+            // std::cout << "se llego a esta parte \n ";
+
+            MangaPanel(clayStr, mangacover, srealm);
           }
         }
       }
