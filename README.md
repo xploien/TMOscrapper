@@ -33,6 +33,12 @@ cd mangadownloader
 mkdir -p build && cd build && cmake .. && make -j$(nproc) && cd ..
 ```
 
+### libraries used:
+
+- Cereal to serialize Manga data in a json format. 
+- Simplewebp as a workarround to load webp image into raylib since raylib dosent support them out of the box.
+- Clay with raylib as its renderer for gui.
+
 ## Roadmap 
 - [x] Get Manga data from tmo 
 - [x] Image Downloader and packager
