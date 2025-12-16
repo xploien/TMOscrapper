@@ -6,6 +6,7 @@ can be compiled with cmake as a normal cmake build
 ### Dependencies: 
 - libzip
 - curl
+- raylib
 
 ```bash
 # Ubuntu/Debian
@@ -15,13 +16,14 @@ sudo apt-get install -y \
     cmake \
     libcurl4-openssl-dev \
     libzip-dev \
-    nlohmann-json3-dev
+    nlohmann-json3-dev \
+    raylib
 
 # Arch Linux
-sudo pacman -S base-devel cmake curl libzip 
+sudo pacman -S base-devel cmake curl libzip raylib 
 
 # Fedora
-sudo dnf install gcc-c++ cmake libcurl-devel libzip-devel 
+sudo dnf install gcc-c++ cmake libcurl-devel libzip-devel raylib
 ```
 ## To build:
 
