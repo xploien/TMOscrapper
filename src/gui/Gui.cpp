@@ -170,21 +170,80 @@ static void altbutton(Clay_String text, ButtonCallback callback) {
   }
 }
 
-Texture2D imagef;
-static void MangaPanel(Clay_String manname, Texture2D *image,
-                       ButtonCallback callback) {
-  // Obtener referencia a la lista de callbacks del frame actual
+void panelhandle(std::string mangabaseurl) {
+  Manga Mimanga;
 
-  frameCallbacks.push_back(callback);
-  Clay_Color actualcolor = teal_dark;
+  Mimanga = logic.GetMangaFromUrl(mangabaseurl);
+  Mimanga.baseurl = mangabaseurl;
+
+  SavetoDB(Mimanga);
+  SavedMangas.push_back(Mimanga);
+
+  tooling.imprimirTodosLosCapitulos(Mimanga);
+
+  SavedMangas = LoadAllMangas();
+};
+
+// static void MangaPanel(Clay_String manname, Texture2D *image) {
+//   // Obtener referencia a la lista de callbacks del frame actual
+//
+//   frameCallbacks.push_back(panelhandle);
+//   Clay_Color actualcolor = teal_dark;
+//   CLAY_AUTO_ID(.wrapped = {
+//                    .layout =
+//                        {
+//                            .sizing =
+//                                {
+//
+//                                    .width =
+//                                        CLAY_SIZING_FIXED(220), // Ancho fijo
+//                                    .height = CLAY_SIZING_FIXED(380) // Alto
+//                                    fijo
+//                                },
+//                            .padding = {16, 16, 8, 8},
+//                            .childGap = basegap,
+//                            .childAlignment = {.x = CLAY_ALIGN_X_CENTER},
+//                            .layoutDirection = CLAY_TOP_TO_BOTTOM,
+//                        },
+//                    .backgroundColor = yellow_dark,
+//                    .cornerRadius = {baseroundcorners},
+//                }) {
+//     Clay_OnHover(buttonCallbackWrapper,
+//                  static_cast<void *>(&frameCallbacks.back()));
+//
+//     CLAY_AUTO_ID(.wrapped = {
+//                      .layout = {.sizing = {.width =
+//                      CLAY_SIZING_PERCENT(0.95),
+//                                            .height =
+//                                                CLAY_SIZING_PERCENT(0.95)}},
+//                      .image = {.imageData = image},
+//                  }){};
+//     CLAY_TEXT(manname, CLAY_TEXT_CONFIG(.wrapped = {
+//                                             .textColor = text_light,
+//                                             .fontId = Gui::FONT_ID_BODY_16,
+//                                             .fontSize = 20,
+//                                         }));
+//   }
+// }
+
+static void panel(Clay_String manname, std::string imagelink,
+                  std::string mangabaseurl) {
+
+  frameCallbacks.push_back([mangabaseurl]() { panelhandle(mangabaseurl); });
+
+  Texture2D *image = ImageLoader::GetImageFromUrl(imagelink);
   CLAY_AUTO_ID(.wrapped = {
                    .layout =
                        {
-                           .sizing = {.width = CLAY_SIZING_GROW(),
-                                      .height = CLAY_SIZING_GROW()},
+                           .sizing =
+                               {
+
+                                   .width = CLAY_SIZING_GROW(),
+                                   .height = CLAY_SIZING_GROW()},
                            .padding = {16, 16, 8, 8},
-                           .childGap = basegap,
-                           .childAlignment = {.x = CLAY_ALIGN_X_CENTER},
+                           .childGap = 12,
+                           .childAlignment = {.x = CLAY_ALIGN_X_CENTER,
+                                              .y = CLAY_ALIGN_Y_CENTER},
                            .layoutDirection = CLAY_TOP_TO_BOTTOM,
                        },
                    .backgroundColor = yellow_dark,
@@ -192,20 +251,41 @@ static void MangaPanel(Clay_String manname, Texture2D *image,
                }) {
     Clay_OnHover(buttonCallbackWrapper,
                  static_cast<void *>(&frameCallbacks.back()));
-
     CLAY_AUTO_ID(.wrapped = {
-                     .layout = {.sizing = {.width = CLAY_SIZING_PERCENT(0.95),
-                                           .height =
-                                               CLAY_SIZING_PERCENT(0.95)}},
+                     .layout =
+                         {
+                             .sizing = {.width = CLAY_SIZING_FIXED(120),
+                                        .height = CLAY_SIZING_FIXED(130)},
+                             .childAlignment = {.x = CLAY_ALIGN_X_CENTER,
+                                                .y = CLAY_ALIGN_Y_CENTER},
+                         },
+                     .backgroundColor = yellow_dark,
+
                      .image = {.imageData = image},
                  }){};
-    CLAY_TEXT(manname, CLAY_TEXT_CONFIG(.wrapped = {
-                                            .textColor = text_light,
-                                            .fontId = Gui::FONT_ID_BODY_16,
-                                            .fontSize = 20,
-                                        }));
+
+    CLAY_AUTO_ID(.wrapped = {
+                     .layout =
+                         {
+                             .sizing = {.width = CLAY_SIZING_FIXED(150),
+                                        .height = CLAY_SIZING_FIXED(30)},
+                             .childAlignment = {.x = CLAY_ALIGN_X_CENTER,
+                                                .y = CLAY_ALIGN_Y_CENTER},
+                         },
+
+                     .backgroundColor = yellow_dark,
+                 }) {
+      CLAY_TEXT(manname, &DefaultText
+                // CLAY_TEXT_CONFIG(.wrapped = {
+                //                      .textColor = text_light,
+                //                      .fontId = Gui::FONT_ID_BODY_16,
+                //                      .fontSize = 20,
+                //                  })
+      );
+    };
   }
 }
+
 // Gui
 void Gui::mylayout() {
 
@@ -311,33 +391,94 @@ void Gui::mylayout() {
                        .backgroundColor = yellow_dark,
                        .cornerRadius = {baseroundcorners},
                    }) {
-        // CLAY_TEXT(TextInput, &DefaultText);
         if (!SearchResults.empty()) {
-          for (SearchResult &result : SearchResults) {
-            // Copiar el string a un buffer nuevo
-            size_t len = result.nameManga.size();
-            auto buffer = std::make_unique<char[]>(len + 1);
-            std::strcpy(buffer.get(), result.nameManga.c_str());
+          const int PANELS_PER_ROW = 2; // Paneles por fila
 
-            // Crear Clay_String apuntando al buffer
-            Clay_String clayStr = {.isStaticallyAllocated = false,
-                                   .length = static_cast<int32_t>(len),
-                                   .chars = buffer.get()};
+          // Calcular número de filas necesarias
+          int numRows =
+              (SearchResults.size() + PANELS_PER_ROW - 1) / PANELS_PER_ROW;
 
-            // Guardar el buffer para que persista durante el frame
-            frameStringBuffers.push_back(std::move(buffer));
-            // Texture2D *mangacover =
-            // ImageLoader::GetImageFromUrl(result.ImageUrl);
-            // Texture2D *mangacover = ImageLoader::GetImage("mytest",
-            // "/home/poe/dormir.png");
-            Texture2D *mangacover =
-                ImageLoader::GetImageFromUrl(result.ImageUrl);
+          // Iterar por cada fila
+          for (int row = 0; row < numRows; row++) {
 
-            // std::cout << "se llego a esta parte \n ";
+            // Contenedor de FILA (horizontal)
+            CLAY_AUTO_ID(.wrapped = {
+                             .layout =
+                                 {
+                                     .sizing =
+                                         {
+                                             .width = CLAY_SIZING_GROW(),
+                                             .height = CLAY_SIZING_GROW(),
+                                         },
+                                     .padding = basepadding,
+                                     .childGap = basegap * 8,
+                                     .childAlignment = {.x =
+                                                            CLAY_ALIGN_X_CENTER,
+                                                        .y = CLAY_ALIGN_Y_TOP},
+                                     .layoutDirection =
+                                         CLAY_LEFT_TO_RIGHT // HORIZONTAL
+                                 },
+                             .backgroundColor = yellow_dark,
+                             .cornerRadius = {baseroundcorners},
+                         }) {
 
-            MangaPanel(clayStr, mangacover, srealm);
+              // Calcular índice inicial de esta fila
+              int startIdx = row * PANELS_PER_ROW;
+
+              // Añadir hasta PANELS_PER_ROW paneles en esta fila
+              for (int col = 0; col < PANELS_PER_ROW; col++) {
+                int idx = startIdx + col;
+
+                // VERIFICAR BOUNDS antes de acceder
+                if (idx < SearchResults.size()) {
+                  // Copiar el string a un buffer nuevo
+                  size_t len = SearchResults[idx].nameManga.size();
+                  auto buffer = std::make_unique<char[]>(len + 1);
+                  std::strcpy(buffer.get(),
+                              SearchResults[idx].nameManga.c_str());
+
+                  // Crear Clay_String apuntando al buffer
+                  Clay_String clayStr = {.isStaticallyAllocated = false,
+                                         .length = static_cast<int32_t>(len),
+                                         .chars = buffer.get()};
+
+                  // Guardar el buffer para que persista durante el frame
+                  frameStringBuffers.push_back(std::move(buffer));
+
+                  panel(clayStr, SearchResults[idx].ImageUrl,
+                        SearchResults[idx].MangaUrl);
+                }
+              }
+            }
           }
         }
+        // CLAY_TEXT(TextInput, &DefaultText);
+        // if (!SearchResults.empty()) {
+        //   for (SearchResult &result : SearchResults) {
+        //     // Copiar el string a un buffer nuevo
+        //     size_t len = result.nameManga.size();
+        //     auto buffer = std::make_unique<char[]>(len + 1);
+        //     std::strcpy(buffer.get(), result.nameManga.c_str());
+        //
+        //     // Crear Clay_String apuntando al buffer
+        //     Clay_String clayStr = {.isStaticallyAllocated = false,
+        //                            .length = static_cast<int32_t>(len),
+        //                            .chars = buffer.get()};
+        //
+        //     // Guardar el buffer para que persista durante el frame
+        //     frameStringBuffers.push_back(std::move(buffer));
+        //     // Texture2D *mangacover =
+        //     // ImageLoader::GetImageFromUrl(result.ImageUrl);
+        //     // Texture2D *mangacover = ImageLoader::GetImage("mytest",
+        //     // "/home/poe/dormir.png");
+        //     Texture2D *mangacover =
+        //         ImageLoader::GetImageFromUrl(result.ImageUrl);
+        //
+        //     // std::cout << "se llego a esta parte \n ";
+        //
+        //     MangaPanel(clayStr, mangacover, srealm);
+        //   }
+        // }
       }
     }
     CLAY_AUTO_ID(.wrapped = {

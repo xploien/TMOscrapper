@@ -33,7 +33,7 @@ cd mangadownloader
 mkdir -p build && cd build && cmake .. && make -j$(nproc) && cd ..
 ```
 
-### libraries used:
+### libraries that are not dependencies used:
 
 - Cereal to serialize Manga data in a json format. 
 - Simplewebp as a workarround to load webp image into raylib since raylib dosent support them out of the box.

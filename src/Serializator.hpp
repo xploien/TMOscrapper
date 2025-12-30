@@ -8,7 +8,7 @@
 #include <cereal/types/string.hpp>
 #include <cereal/types/vector.hpp>
 #include <fstream>
-// asumiendo que claude tenag razon...
+// asumiendo que claude tenga razon...
 //  ---------------------------------------------------------
 //   Obtener ruta REAL del ejecutable (resuelve symlinks).
 //   Luego construir <exeDir>/savedMangas
@@ -54,6 +54,8 @@ inline std::string GetSaveDir() {
   if (len > 0)
     exePath = std::filesystem::canonical(std::string(buffer.data(), len));
 #endif
+
+  // mi codigo cuidado
 
   // obtener directorio real
   std::filesystem::path exeDir = exePath.parent_path();
