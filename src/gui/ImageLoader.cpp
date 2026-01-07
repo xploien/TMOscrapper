@@ -5,7 +5,7 @@
 #include <raylib.h>
 #define SIMPLEWEBP_IMPLEMENTATION // requiere estar antes del include porque si
                                   // no se enoja
-#include "../include/simplewebp.h"
+#include "../include/simplewebp/simplewebp.h"
 
 std::unordered_map<std::string, Texture2D> ImageLoader::cache;
 bool ImageLoader::initialized = false;

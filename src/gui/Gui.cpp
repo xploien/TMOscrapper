@@ -10,6 +10,8 @@
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
+#include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <functional>
 #include <iostream>
@@ -169,6 +171,89 @@ static void altbutton(Clay_String text, ButtonCallback callback) {
                                      }));
   }
 }
+
+bool ShouldSelectTranslator = false;
+int currentmanindex;
+void MangaDownloaderIndexCatcher(std::string traductor) {
+  std::vector<int> resultado;
+  Manga inputmanga = SavedMangas[currentmanindex];
+  std::string traductorselecionado = traductor;
+  for (Capitulo cap : inputmanga.capitulos) {
+    for (int i = 0; i < cap.NumTraduciones; i++) {
+      if (cap.traducciones[i].NombreTraductor == traductorselecionado) {
+        resultado.push_back(i);
+        break;
+      }
+    }
+  }
+  dloader.setSpeed(300);
+  dloader.setThreads(4);
+  dloader.MangatoCBZ(inputmanga, resultado);
+}
+
+void closepopup() { ShouldSelectTranslator = !ShouldSelectTranslator; }
+// bool tooglebool(bool elbool) { return !elbool; }
+
+void MangaDownloaderCaller(int index) {
+  // std::cout << "funciona!:" << index << "\n";
+  if (!ShouldSelectTranslator) {
+    Manga TestTemp = SavedMangas[index];
+
+    int AnalisisResult = dloader.GuiAnalizeFilterIndex(TestTemp);
+    std::cout << "uwu";
+    std::vector<int> mangaindex;
+    switch (AnalisisResult) {
+    default: {
+      std::cerr << "wtf how did you get this \n";
+    }
+    case 0: {
+      break;
+    }
+    case 1: {
+      std::vector<int> indice(TestTemp.numerocapitulos, 0);
+      mangaindex = indice;
+    }
+    case 2: {
+      std::cout << "we rocking \n";
+
+      ShouldSelectTranslator = true;
+    }
+    }
+  }
+
+  // we implementing until uwu
+  //  std::cout << "traductor ?:  \n";
+  //  int iy = 1;
+  //  for (std::string trad : fulltraductores) {
+  //    std::cout << iy << " " << trad << "\n";
+  //    iy++;
+  //  }
+  //
+  //  int usertradselect;
+  //  std::cin >> usertradselect;
+  // uwu
+
+  // std::string traductorselecionado = fulltraductores[usertradselect - 1];
+  // // checar coincidencias al mas estilo fuerza bruta
+  // for (Capitulo cap : inputmanga.capitulos) {
+  //   for (int i = 0; i < cap.NumTraduciones; i++) {
+  //     if (cap.traducciones[i].NombreTraductor == traductorselecionado) {
+  //       resultado.push_back(i);
+  //       break;
+  //     }
+  //   }
+  // }
+}
+
+// std::vector<int> mangaindex = dloader.MangaFilterIndex(TestTemp);
+// std::cout << "index's: ";
+// for (int i : mangaindex) {
+//   std::cout << i << "\n";
+// }
+//
+// dloader.setSpeed(300);
+// dloader.setThreads(4);
+// dloader.MangatoCBZ(TestTemp, mangaindex);
 
 void panelhandle(std::string mangabaseurl) {
   Manga Mimanga;
@@ -391,6 +476,62 @@ void Gui::mylayout() {
                        .backgroundColor = yellow_dark,
                        .cornerRadius = {baseroundcorners},
                    }) {
+        // popup code:
+        if (ShouldSelectTranslator) {
+          // super dense nest
+          CLAY(CLAY_ID("FloatingContainer"),
+               .wrapped = {
+                   .layout = {.sizing = {.width = CLAY_SIZING_PERCENT(0.5),
+                                         .height = CLAY_SIZING_FIXED(300)},
+                              .padding = {16, 16, 16, 16},
+                              .childGap = basegap,
+                              .layoutDirection = CLAY_TOP_TO_BOTTOM},
+                   .backgroundColor = {140, 80, 200, 200},
+                   .floating =
+                       {
+                           .offset = {0, 0},
+                           .zIndex = 1,
+                           .attachPoints = {CLAY_ATTACH_POINT_CENTER_TOP,
+                                            CLAY_ATTACH_POINT_CENTER_TOP},
+                           .attachTo = CLAY_ATTACH_TO_PARENT,
+                       },
+                   .border =
+                       {
+                           .color = {80, 80, 80, 255},
+                           .width = CLAY_BORDER_OUTSIDE(2),
+                       },
+               }) {
+            CLAY_TEXT(CLAY_STRING("Selecione Traductor: "),
+                      CLAY_TEXT_CONFIG({
+                          .textColor = {255, 255, 255, 255},
+                          .fontSize = 24,
+                      }));
+            if (fulltraductores.empty()) {
+              std::cout << "y la culpa no era mia sino de fulltraducterias "
+                        << "\n";
+            }
+
+            // hay que pensar en como pasar los datos de fulltraducterias a aqui
+            for (std::string trad : fulltraductores) {
+              size_t len = trad.size();
+              auto buffer = std::make_unique<char[]>(len + 1);
+              std::strcpy(buffer.get(), trad.c_str());
+
+              // Crear Clay_String apuntando al buffer
+              Clay_String tradclayStr = {.isStaticallyAllocated = false,
+                                         .length = static_cast<int32_t>(len),
+                                         .chars = buffer.get()};
+              // Guardar el buffer para que persista durante el frame
+              frameStringBuffers.push_back(std::move(buffer));
+              // pass id index?
+
+              altbutton(tradclayStr,
+                        [trad]() { MangaDownloaderIndexCatcher(trad); });
+            }
+
+            altbutton(Clay_String("cerrar"), closepopup);
+          }
+        }
         if (!SearchResults.empty()) {
           const int PANELS_PER_ROW = 2; // Paneles por fila
 
@@ -538,6 +679,7 @@ void Gui::mylayout() {
 
         // int ix = 1;
         for (const Manga &man : SavedMangas) {
+          int index = static_cast<int>(&man - &SavedMangas[0]);
           // Copiar el string a un buffer nuevo
           size_t len = man.nombre.size();
           auto buffer = std::make_unique<char[]>(len + 1);
@@ -550,8 +692,8 @@ void Gui::mylayout() {
 
           // Guardar el buffer para que persista durante el frame
           frameStringBuffers.push_back(std::move(buffer));
-
-          altbutton(clayStr, srealm);
+          currentmanindex = index;
+          altbutton(clayStr, [index]() { MangaDownloaderCaller(index); });
         }
       }
       CLAY_AUTO_ID(.wrapped = {

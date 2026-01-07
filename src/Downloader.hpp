@@ -13,6 +13,8 @@
 
 namespace fs = std::filesystem;
 
+extern std::vector<std::string> fulltraductores;
+
 class Downloader {
 private:
   MyApi api;
@@ -100,6 +102,7 @@ public:
 
   // Métodos principales
   std::vector<int> MangaFilterIndex(Manga inputmanga);
+  int GuiAnalizeFilterIndex(Manga inputmanga);
   bool MangatoCBZ(Manga &inputmanga, std::vector<int> index);
 };
 

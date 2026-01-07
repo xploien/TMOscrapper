@@ -8,6 +8,8 @@
 #include <unordered_map> // index
 #include <zip.h>
 
+std::vector<std::string> fulltraductores;
+
 std::vector<int> Downloader::MangaFilterIndex(Manga inputmanga) {
   std::vector<int> resultado;
   int numeroCapitulos = inputmanga.numerocapitulos;
@@ -15,8 +17,7 @@ std::vector<int> Downloader::MangaFilterIndex(Manga inputmanga) {
   // integrity check
   for (Capitulo &capitulo : inputmanga.capitulos) {
     if (capitulo.NumTraduciones == 0) {
-      std::cerr << "el manga no esta completo faltan traduciones suficientes"
-                << std::endl;
+      std::cerr << "insufficient traductions" << std::endl;
     }
   }
 
@@ -29,13 +30,12 @@ std::vector<int> Downloader::MangaFilterIndex(Manga inputmanga) {
   }
 
   // Encontrar traductores que tienen todos los capítulos
-  std::vector<std::string> fulltraductores;
+  // std::vector<std::string> fulltraductores;
   for (auto &[traducion, numero] : CapitulosTraductor) {
     if (numero == numeroCapitulos) {
       fulltraductores.push_back(traducion);
     }
   }
-
   if (fulltraductores.empty()) {
     std::cout << "ninguno fue constante \n";
     std::vector<int> indice(inputmanga.numerocapitulos, 0);
@@ -63,6 +63,47 @@ std::vector<int> Downloader::MangaFilterIndex(Manga inputmanga) {
   }
 
   return resultado;
+}
+
+int Downloader::GuiAnalizeFilterIndex(Manga inputmanga) {
+
+  int numeroCapitulos = inputmanga.numerocapitulos;
+
+  // integrity check
+  for (Capitulo &capitulo : inputmanga.capitulos) {
+    if (capitulo.NumTraduciones == 0) {
+      std::cerr << "insufficient traductions" << std::endl;
+      return 0;
+    }
+  }
+
+  std::unordered_map<std::string, int> CapitulosTraductor;
+  // Contar capítulos por traductor
+  for (Capitulo &capitulo : inputmanga.capitulos) {
+    for (Traducion &traducion : capitulo.traducciones) {
+      CapitulosTraductor[traducion.NombreTraductor]++;
+    }
+  }
+
+  // Encontrar traductores que tienen todos los capítulos
+  std::vector<std::string> fulltraductores;
+  for (auto &[traducion, numero] : CapitulosTraductor) {
+    if (numero == numeroCapitulos) {
+      fulltraductores.push_back(traducion);
+    }
+  }
+
+  if (fulltraductores.empty()) {
+    std::cout << "not constant traductor but complete manga\n";
+    // std::vector<int> indice(inputmanga.numerocapitulos, 0);
+    return 1;
+  } else {
+
+    std::cout << "more than one full trnslation exists \n ";
+    return 2;
+  }
+  std::cerr << "Analizer failed \n";
+  return 0;
 }
 
 // private functions
