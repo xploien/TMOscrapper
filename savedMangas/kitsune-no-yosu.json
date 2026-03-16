@@ -1,0 +1,313 @@
+{
+    "manga": {
+        "Nombre": "kitsune-no-yosu",
+        "URlbase": "https://zonatmo.com/library/manga/63461/kitsune-no-yosu",
+        "CantidadCapitulos": 6,
+        "Capitulos": [
+            {
+                "Numero": 6.0,
+                "Nombre": "Extra",
+                "Traducciones": [
+                    {
+                        "Url": "https://zonatmo.com/viewer/86b6050ae50d343dd901e0d78241bdf6/paginated",
+                        "NombreTraductor": "sweet-demons-scan\"",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/bac78cd4.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/1b286b58.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/f62eb634.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/c4dd0d2c.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/2c0d4818.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/7e55d396.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/4d8f95ba.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/557232d1.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/dae999dc.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/a06fa953.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/0050c6d6.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/aa8a0cc4.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/ca21c8e8.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/d03de283.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/d842aa99.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/60eb4ede.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/645559de.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/cdc3b684.webp",
+                            "https://img1tmo.com/uploads/20230827/86b6050ae50d343dd901e0d78241bdf6/00bb6b13.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/1309078"
+                    }
+                ],
+                "CantidadTraducciones": 1
+            },
+            {
+                "Numero": 5.0,
+                "Nombre": "Unamed",
+                "Traducciones": [
+                    {
+                        "Url": "https://zonatmo.com/viewer/49781cec9b0381c728b2f6e3ea6ae4da/paginated",
+                        "NombreTraductor": "sweet-demons-scan\"",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/0bea22be.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/84d40ff8.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/f9273125.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/ebba6413.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/17e51b71.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/e777c7be.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/f8e44a31.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/aa3aec1b.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/8e7a76c7.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/9f75acc3.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/1dac8d86.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/ef6e7554.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/b9d5af36.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/732f67a7.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/92c48461.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/03b5a05c.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/b96437ea.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/5b7557f5.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/45604d2d.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/65326584.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/4d590ef5.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/84ee7040.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/bfb5a6ee.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/5f6c78e4.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/e9ad6449.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/49f4443b.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/90872813.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/bf86c431.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/4771e720.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/01c1fb6e.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/09edfc4c.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/e3a1f6ed.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/08abc49e.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/073954d1.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/55e02f7c.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/ed57a9b9.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/cb98b48a.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/69c37e42.webp",
+                            "https://img1tmo.com/uploads/20221105/49781cec9b0381c728b2f6e3ea6ae4da/876428b3.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/1121856"
+                    }
+                ],
+                "CantidadTraducciones": 1
+            },
+            {
+                "Numero": 4.0,
+                "Nombre": "Unamed",
+                "Traducciones": [
+                    {
+                        "Url": "https://zonatmo.com/viewer/3466860c2decda2b17df47fed3cf8bb8/paginated",
+                        "NombreTraductor": "sweet-demons-scan\"",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/c38cc978.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/a1292bd4.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/3f974a43.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/89d9d9fa.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/51247336.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/0da02870.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/39cb0f6e.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/a62fd750.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/34642dfc.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/c3a150eb.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/afe16d69.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/aaea3c48.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/2d50e880.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/d6af7b8c.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/6109b567.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/a5847d70.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/4d450672.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/480c4ccc.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/1741127c.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/74546929.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/f90e6997.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/86f86f4f.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/3bacddd8.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/9c26f9d4.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/0f1a22f9.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/4f20d991.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/6856eb10.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/83b36cc2.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/0c30ed5a.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/6c63574d.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/37a6e070.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/2d774c43.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/db13ba22.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/91e5726d.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/86f24b97.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/7e4093f3.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/5d698543.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/2d261574.webp",
+                            "https://img1tmo.com/uploads/20221104/3466860c2decda2b17df47fed3cf8bb8/c5a21c2a.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/1121129"
+                    }
+                ],
+                "CantidadTraducciones": 1
+            },
+            {
+                "Numero": 3.0,
+                "Nombre": "Unamed",
+                "Traducciones": [
+                    {
+                        "Url": "",
+                        "NombreTraductor": "sweet-demons-scan\"",
+                        "UrlImagenes": [],
+                        "UnfilteredUrl": ""
+                    },
+                    {
+                        "Url": "https://zonatmo.com/viewer/d153909ae1f4d845ebc11c0b36625265/paginated",
+                        "NombreTraductor": "krushinotrad\">Krushinotr",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/5fd1f496.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/b96aea80.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/16695d6a.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/52b41dfc.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/4f8b4a1b.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/0618f1e9.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/9b644d5e.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/d0f48bec.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/91b95455.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/651074ac.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/4195803b.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/e5b58a94.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/492c324d.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/e771408a.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/67b40dc1.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/8195d67d.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/01e71a25.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/408e1da9.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/9a37b00e.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/f945fc34.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/5ff8637c.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/f662a1c1.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/d23ceabd.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/81e9343f.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/c664bf57.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/088177c2.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/1a1f25e6.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/7c3a01ba.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/ee088e02.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/d0f063dd.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/b7906878.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/b402315d.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/50ed70f9.webp",
+                            "https://img1tmo.com/uploads/20221103/d153909ae1f4d845ebc11c0b36625265/6be15050.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/1120382"
+                    }
+                ],
+                "CantidadTraducciones": 2
+            },
+            {
+                "Numero": 2.0,
+                "Nombre": "Unamed",
+                "Traducciones": [
+                    {
+                        "Url": "",
+                        "NombreTraductor": "sweet-demons-scan\"",
+                        "UrlImagenes": [],
+                        "UnfilteredUrl": ""
+                    },
+                    {
+                        "Url": "https://zonatmo.com/viewer/11ba2e64e7380699f30c75d79fb16bd2/paginated",
+                        "NombreTraductor": "krushinotrad\">Krushinotr",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/4cd19524.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/07e0488a.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/0d6eaa28.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/ecd3c310.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/90f1822c.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/5c91236f.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/ffe71f96.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/05d86644.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/5ab78cf2.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/3dbda02b.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/fa448387.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/80fda01c.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/4f2c8590.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/9ab6e676.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/899d258b.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/20fb7a06.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/69dfa98e.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/74d00afd.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/03a0c600.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/0136fdcb.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/bb339539.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/a699f9fc.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/46d1285b.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/849afc54.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/6dd81a61.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/b56afc6c.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/694f85ee.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/b6372374.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/cb746673.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/f6560ca9.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/aa371c5f.webp",
+                            "https://img1tmo.com/uploads/20221029/11ba2e64e7380699f30c75d79fb16bd2/1bcfb099.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/1118033"
+                    }
+                ],
+                "CantidadTraducciones": 2
+            },
+            {
+                "Numero": 1.0,
+                "Nombre": "Unamed",
+                "Traducciones": [
+                    {
+                        "Url": "",
+                        "NombreTraductor": "sweet-demons-scan\"",
+                        "UrlImagenes": [],
+                        "UnfilteredUrl": ""
+                    },
+                    {
+                        "Url": "https://zonatmo.com/viewer/283ce27e752a835ac7e06e6c75eb2813/paginated",
+                        "NombreTraductor": "krushinotrad\">Krushinotr",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/93888359.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/b47ac28b.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/d444d413.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/663036b5.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/013fda84.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/e0d4e566.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/dffc72b2.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/b818cd4e.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/9829b365.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/a0ea8841.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/f6532806.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/040e33a5.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/6215bd06.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/f95ced66.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/7d3582a5.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/25a33ceb.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/e445e3f8.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/468d51fc.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/79b8e66e.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/ef35fe90.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/69cd0fd6.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/f350bb0a.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/d32c8ce6.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/05d0cf05.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/523823c3.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/1b561949.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/f1ded0ca.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/489d41e1.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/e4c26ad3.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/fec18e41.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/3ae686c0.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/af625be6.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/8a3c3bbd.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/4c3d431d.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/6aae3a36.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/f860efb1.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/77fd9056.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/6cfeea3a.webp",
+                            "https://img1tmo.com/uploads/20210929/283ce27e752a835ac7e06e6c75eb2813/f9adae0f.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/846853"
+                    }
+                ],
+                "CantidadTraducciones": 2
+            }
+        ]
+    }
+}

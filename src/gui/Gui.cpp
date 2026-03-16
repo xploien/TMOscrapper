@@ -27,7 +27,7 @@ Downloader dloader;
 
 #include <iomanip>
 #include <sstream>
-
+//
 std::string urlEncode(const std::string &value) {
   std::ostringstream escaped;
   escaped.fill('0');
@@ -176,7 +176,10 @@ bool ShouldSelectTranslator = false;
 int currentmanindex;
 void MangaDownloaderIndexCatcher(std::string traductor) {
   std::vector<int> resultado;
+
+  std::cout << "el vector contiene: " << traductor << "\n ";
   Manga inputmanga = SavedMangas[currentmanindex];
+  std::cout << "el index heredado es: " << inputmanga.nombre << "\n ";
   std::string traductorselecionado = traductor;
   for (Capitulo cap : inputmanga.capitulos) {
     for (int i = 0; i < cap.NumTraduciones; i++) {
@@ -186,8 +189,11 @@ void MangaDownloaderIndexCatcher(std::string traductor) {
       }
     }
   }
+
   dloader.setSpeed(300);
   dloader.setThreads(4);
+  for (int i : resultado) {
+  }
   dloader.MangatoCBZ(inputmanga, resultado);
 }
 
@@ -196,11 +202,14 @@ void closepopup() { ShouldSelectTranslator = !ShouldSelectTranslator; }
 
 void MangaDownloaderCaller(int index) {
   // std::cout << "funciona!:" << index << "\n";
+  //
+
+  std::cout << "El index pasado fue : " << currentmanindex << "\n ";
   if (!ShouldSelectTranslator) {
     Manga TestTemp = SavedMangas[index];
 
     int AnalisisResult = dloader.GuiAnalizeFilterIndex(TestTemp);
-    std::cout << "uwu";
+    // std::cout << "uwu";
     std::vector<int> mangaindex;
     switch (AnalisisResult) {
     default: {
@@ -214,25 +223,22 @@ void MangaDownloaderCaller(int index) {
       mangaindex = indice;
     }
     case 2: {
-      std::cout << "we rocking \n";
-
       ShouldSelectTranslator = true;
     }
     }
   }
 
-  // we implementing until uwu
-  //  std::cout << "traductor ?:  \n";
-  //  int iy = 1;
-  //  for (std::string trad : fulltraductores) {
-  //    std::cout << iy << " " << trad << "\n";
-  //    iy++;
-  //  }
+  // we implementing until uwu, what the fuck i just wrote
+  // std::cout << "traductor ?:  \n";
+  // int iy = 1;
+  // for (std::string trad : fulltraductores) {
+  //   std::cout << iy << " " << trad << "\n";
+  //   iy++;
+  // }
   //
-  //  int usertradselect;
-  //  std::cin >> usertradselect;
-  // uwu
-
+  // int usertradselect;
+  // std::cin >> usertradselect;
+  //
   // std::string traductorselecionado = fulltraductores[usertradselect - 1];
   // // checar coincidencias al mas estilo fuerza bruta
   // for (Capitulo cap : inputmanga.capitulos) {
@@ -507,7 +513,7 @@ void Gui::mylayout() {
                           .fontSize = 24,
                       }));
             if (fulltraductores.empty()) {
-              std::cout << "y la culpa no era mia sino de fulltraducterias "
+              std::cout << " y por alguna razon aqui ya no hay traductores "
                         << "\n";
             }
 
@@ -680,6 +686,7 @@ void Gui::mylayout() {
         // int ix = 1;
         for (const Manga &man : SavedMangas) {
           int index = static_cast<int>(&man - &SavedMangas[0]);
+
           // Copiar el string a un buffer nuevo
           size_t len = man.nombre.size();
           auto buffer = std::make_unique<char[]>(len + 1);
@@ -692,8 +699,10 @@ void Gui::mylayout() {
 
           // Guardar el buffer para que persista durante el frame
           frameStringBuffers.push_back(std::move(buffer));
-          currentmanindex = index;
-          altbutton(clayStr, [index]() { MangaDownloaderCaller(index); });
+          altbutton(clayStr, [index]() {
+            currentmanindex = index; // se ejecuta solo cuando hace clic
+            MangaDownloaderCaller(index);
+          });
         }
       }
       CLAY_AUTO_ID(.wrapped = {

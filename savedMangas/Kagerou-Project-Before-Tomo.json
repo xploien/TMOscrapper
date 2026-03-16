@@ -1,0 +1,34 @@
+{
+    "manga": {
+        "Nombre": "Kagerou-Project-Before-Tomo",
+        "URlbase": "https://zonatmo.com/library/novel/15354/Kagerou-Project-Before-Tomo",
+        "CantidadCapitulos": 1,
+        "Capitulos": [
+            {
+                "Numero": 1.0,
+                "Nombre": "Tomo 1.",
+                "Traducciones": [
+                    {
+                        "Url": "https://zonatmo.com/viewer/5af726382f142/paginated",
+                        "NombreTraductor": "TuNovelaYmas\">TuNovelaYm",
+                        "UrlImagenes": [
+                            "https://img1tmo.com/uploads/20160411/5af726382f142/001_570af7ab0b9ac.webp",
+                            "https://img1tmo.com/uploads/20160411/5af726382f142/002_570af7ab0b9ac.webp",
+                            "https://img1tmo.com/uploads/20160411/5af726382f142/003_570af7ab0b9ac.webp",
+                            "https://img1tmo.com/uploads/20160411/5af726382f142/004_570af7ab0b9ac.webp",
+                            "https://img1tmo.com/uploads/20160411/5af726382f142/005_570af7ab0b9ac.webp",
+                            "https://img1tmo.com/uploads/20160411/5af726382f142/006_570af7ab0b9ac.webp",
+                            "https://img1tmo.com/uploads/20160411/5af726382f142/007_570af7ab0b9ac.webp",
+                            "https://img1tmo.com/uploads/20160411/5af726382f142/008_570af7ab0b9ac.webp",
+                            "https://img1tmo.com/uploads/20160411/5af726382f142/009_570af7ab0b9ac.webp",
+                            "https://img1tmo.com/uploads/20160411/5af726382f142/10_570af7ab0b9ac.webp",
+                            "https://img1tmo.com/uploads/20160411/5af726382f142/11_570af7ab0b9ac.webp"
+                        ],
+                        "UnfilteredUrl": "https://zonatmo.com/view_uploads/165774"
+                    }
+                ],
+                "CantidadTraducciones": 1
+            }
+        ]
+    }
+}
