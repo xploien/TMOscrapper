@@ -1,4 +1,11 @@
-# TuMangaOnline Downloader
+# Archived
+as from today, TuMangaOnline frontend web page has been taked down, its been rumored that this is for anti piracy but only God really knows why, as i said it looks only frontend web page is down, cdn server looks fine and vcan be cheched with:
+```bash
+ping urldomain
+```
+if you happen to have the html file of a tmo manga, this could could be easily mofified to get the cdn urls, but aside from that this code no longer works or its usefull . 
+
+## TuMangaOnline Downloader
 Permite descargar mangas enteros de tmo;
 ## update:
 code is finally functional but at an early stage

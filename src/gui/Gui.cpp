@@ -85,8 +85,6 @@ void inputhand() {
 
     // URL encode el query antes de enviarlo
     std::string encodedQuery = urlEncode(searchquey);
-    std::cout << "DEBUG: Original query: " << searchquey << "\n";
-    std::cout << "DEBUG: Encoded query: " << encodedQuery << "\n";
 
     std::vector<SearchResult> resultsfromurl =
         logic.GetSearchResultsFromUrl(encodedQuery);
@@ -146,11 +144,11 @@ static void buttonCallbackWrapper(Clay_ElementId id,
   }
 }
 
-static void altbutton(Clay_String text, ButtonCallback callback) {
+static void altbutton(Clay_String text, ButtonCallback callback,
+                      Clay_Color color) {
   // Obtener referencia a la lista de callbacks del frame actual
 
   frameCallbacks.push_back(callback);
-  Clay_Color actualcolor = teal_dark;
   CLAY_AUTO_ID(.wrapped = {
                    .layout =
                        {
@@ -159,15 +157,16 @@ static void altbutton(Clay_String text, ButtonCallback callback) {
                            .childGap = basegap,
                            .childAlignment = {.x = CLAY_ALIGN_X_CENTER},
                        },
-                   .backgroundColor = actualcolor,
+                   .backgroundColor = color,
                    .cornerRadius = {baseroundcorners},
-               }) {
+                   .clip = {.horizontal = true}}) {
     Clay_OnHover(buttonCallbackWrapper,
                  static_cast<void *>(&frameCallbacks.back()));
     CLAY_TEXT(text, CLAY_TEXT_CONFIG(.wrapped = {
                                          .textColor = text_light,
                                          .fontId = Gui::FONT_ID_BODY_16,
                                          .fontSize = 20,
+
                                      }));
   }
 }
@@ -177,9 +176,7 @@ int currentmanindex;
 void MangaDownloaderIndexCatcher(std::string traductor) {
   std::vector<int> resultado;
 
-  std::cout << "el vector contiene: " << traductor << "\n ";
   Manga inputmanga = SavedMangas[currentmanindex];
-  std::cout << "el index heredado es: " << inputmanga.nombre << "\n ";
   std::string traductorselecionado = traductor;
   for (Capitulo cap : inputmanga.capitulos) {
     for (int i = 0; i < cap.NumTraduciones; i++) {
@@ -201,10 +198,8 @@ void closepopup() { ShouldSelectTranslator = !ShouldSelectTranslator; }
 // bool tooglebool(bool elbool) { return !elbool; }
 
 void MangaDownloaderCaller(int index) {
-  // std::cout << "funciona!:" << index << "\n";
   //
 
-  std::cout << "El index pasado fue : " << currentmanindex << "\n ";
   if (!ShouldSelectTranslator) {
     Manga TestTemp = SavedMangas[index];
 
@@ -492,7 +487,7 @@ void Gui::mylayout() {
                               .padding = {16, 16, 16, 16},
                               .childGap = basegap,
                               .layoutDirection = CLAY_TOP_TO_BOTTOM},
-                   .backgroundColor = {140, 80, 200, 200},
+                   .backgroundColor = crust_light,
                    .floating =
                        {
                            .offset = {0, 0},
@@ -509,7 +504,7 @@ void Gui::mylayout() {
                }) {
             CLAY_TEXT(CLAY_STRING("Selecione Traductor: "),
                       CLAY_TEXT_CONFIG({
-                          .textColor = {255, 255, 255, 255},
+                          .textColor = mauve_light,
                           .fontSize = 24,
                       }));
             if (fulltraductores.empty()) {
@@ -531,11 +526,16 @@ void Gui::mylayout() {
               frameStringBuffers.push_back(std::move(buffer));
               // pass id index?
 
-              altbutton(tradclayStr,
-                        [trad]() { MangaDownloaderIndexCatcher(trad); });
+              altbutton(
+                  tradclayStr, [trad]() { MangaDownloaderIndexCatcher(trad); },
+                  surface0_light);
             }
+            CLAY(CLAY_ID("spacer"),
+                 .wrapped = {
+                     .layout = {.sizing = {.height = CLAY_SIZING_GROW()}}});
 
-            altbutton(Clay_String("cerrar"), closepopup);
+            std::string close = "cerrar";
+            altbutton(toClayString(close), closepopup, flamingo_dark);
           }
         }
         if (!SearchResults.empty()) {
@@ -699,10 +699,13 @@ void Gui::mylayout() {
 
           // Guardar el buffer para que persista durante el frame
           frameStringBuffers.push_back(std::move(buffer));
-          altbutton(clayStr, [index]() {
-            currentmanindex = index; // se ejecuta solo cuando hace clic
-            MangaDownloaderCaller(index);
-          });
+          altbutton(
+              clayStr,
+              [index]() {
+                currentmanindex = index; // se ejecuta solo cuando hace clic
+                MangaDownloaderCaller(index);
+              },
+              teal_dark);
         }
       }
       CLAY_AUTO_ID(.wrapped = {
